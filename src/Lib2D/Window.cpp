@@ -30,7 +30,7 @@ void Window::OpenWindow(const char* windowName)
 
 void Window::ClearWindow()
 {
-	SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, 255);
 	SDL_RenderClear(m_Renderer);
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 struct Vector2f
 {
-private:
+protected:
 	float m_x;
 	float m_y;
 
@@ -14,5 +14,6 @@ public:
 	float GetPosX() { return m_x; }
 	float GetPosY() { return m_y; }
 
+	friend class DEBUG;
 };
 
