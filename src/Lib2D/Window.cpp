@@ -34,6 +34,7 @@ void Window::ClearWindow()
 	SDL_RenderClear(m_Renderer);
 }
 
+
 void Window::Draw(Drawable* d)
 {
 	d->Draw(this);
