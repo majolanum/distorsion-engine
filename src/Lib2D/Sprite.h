@@ -17,13 +17,16 @@ protected:
 	SDL_Texture* m_Texture;
 
 	void ChangeTexturePath(std::string newTexturePath);
-		
+
 public:
-	Sprite(std::string texturePath,float posX = 0, float posY = 0);
+	Sprite(std::string texturePath, float posX = 0, float posY = 0);
 	void LoadTexture(const char* TexturePath);
 	void SetTextureSize(int newWidth, int newHeight) { m_Width = newWidth; m_Height = newHeight; }
 	void Draw(Window*) override;
 
+
+	int GetWidth() const { return m_Width; }
+	int GetHeight() const { return m_Height; }
 	~Sprite();
 };
 
