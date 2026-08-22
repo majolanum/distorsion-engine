@@ -1,18 +1,16 @@
 #pragma once
 struct Vector2f
 {
-protected:
-	float m_x;
-	float m_y;
-
 public:
-	Vector2f(float x, float y) : m_x(x), m_y(y) {}
-	void Set(float x, float y) { m_x = x; m_y = y; }
+	float x;
+	float y;
 
-	Vector2f GetVector() const { return { m_x,m_y }; }
+	Vector2f(float _x, float _y)
+	{
+		x = _x; y = _y;
+	}
 
-	float GetPosX() { return m_x; }
-	float GetPosY() { return m_y; }
+	Vector2f Normalize();
 
 	friend class DEBUG;
 };

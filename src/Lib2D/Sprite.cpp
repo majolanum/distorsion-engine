@@ -35,7 +35,7 @@ void Sprite::Draw(Window* w)
 		SDL_QueryTexture(m_Texture, NULL, NULL, &m_Width, &m_Height);
 	}
 
-	SDL_Rect dst = { m_Position->GetPosX(), m_Position->GetPosY(), m_Width,m_Height };
+	SDL_Rect dst = { m_Position->x, m_Position->y, m_Width,m_Height };
 	SDL_RenderCopy(w->m_Renderer, m_Texture, NULL, &dst);
 		std::cout << SDL_GetError();
 

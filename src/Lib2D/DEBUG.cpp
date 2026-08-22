@@ -32,13 +32,13 @@ void DEBUG::DrawCircle(int radius, float posX, float posY, SDL_Color color, int 
 	SDL_SetRenderDrawColor(m_window->m_Renderer, color.r, color.g, color.b, color.a);
 	Vector2f center = { posX, posY };
 
-	int x1 = center.GetPosX() + radius * cos(0);
-	int y1 = center.GetPosY() + radius * sin(0);
+	int x1 = center.x+ radius * cos(0);
+	int y1 = center.y + radius * sin(0);
 
 	for (int i = 1; i <= precision; i++)
 	{
-		float x2 = center.GetPosX() + radius * cos(i * distanceBetweenTwoPoints);
-		float y2 = center.GetPosY() + radius * sin(i * distanceBetweenTwoPoints);
+		float x2 = center.x + radius * cos(i * distanceBetweenTwoPoints);
+		float y2 = center.y + radius * sin(i * distanceBetweenTwoPoints);
 
 		SDL_RenderDrawLine(m_window->m_Renderer, x1, y1, x2, y2);
 		
