@@ -4,8 +4,8 @@
 #include "main.h"
 #include "Lib2D/Window.h"
 #include "Distortion_engine/Entity.h"
-#include "Lib2D/DEBUG.h"
-#include "Lib2D/Collider.h"
+#include "Distortion_engine/Timer.h"
+
 #include "Lib2D/InputManager.h"
 
 #define TARGET_FPS 60
@@ -18,34 +18,31 @@ int main(int argc, char* argv[])
 	Window* window = new Window();
 	window->OpenWindow();
 
-
-	DEBUG* DebugDraw = DEBUG::Get();
-	DebugDraw->SetWindow(window);
-
 	Entity* test = new Entity(new Vector2f(50, 50), "../../res/Lib2D/PlaceHolder.png");
-
+	test->GoToPosition(new Vector2f(500, 500), 10);
 	InputManager* im = InputManager::Get();
 	SDL_Event event;
 
-	float start, end, DeltaTime = 0, TotalElapsed = 0;
-	int FramCount =0;
+	float DeltaTime = 0, TotalElapsed = 0;
+	int FramCount = 0;
+	Timer *fps = new Timer();
 
 	while (true)
 	{
-		start = SDL_GetTicks64();
+		fps->StartTimer();
 		window->ClearWindow();
 
 		while (SDL_PollEvent(&event))
 		{
 			im->Update(event);
 		}
-		test->Move(new Vector2f(10, 10));
+		
+		test->Update(DeltaTime);
 		test->Draw(window);
 
 		window->Present();
-
-		end = SDL_GetTicks64();
-		DeltaTime = end - start;
+				
+		DeltaTime = fps->EndTimer();
 
 		int diff = TARGET_ELAPSED - DeltaTime;
 		if (diff > 0)

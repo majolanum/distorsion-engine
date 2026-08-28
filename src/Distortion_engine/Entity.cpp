@@ -11,23 +11,44 @@ Entity::Entity(Vector2f* Position, std::string TexturPath) :
 	}
 
 	m_Collider = new Collider();
-
-	//TODO : a enlever a la fin des test
-	m_Speed = 10;
 }
 
-void Entity::Move(Vector2f* motion)
+void Entity::GoToDirection(Vector2f* position, float speed)
 {
-	Vector2f NormMotion = motion->Normalize();
-	
-	m_Position->x += NormMotion.x * m_Speed;
-	m_Position->y += NormMotion.y * m_Speed;
+	target.IsSet = false;
+	if (speed != -1)
+	{ 
+		
+	}
+}
+
+void Entity::GoToPosition(Vector2f* position, float speed)
+{
+	target.IsSet = false;
+	if (speed != -1)
+	{
+		target.TargetPosition = position;
+		
+		target.IsSet = true;
+	}
+}
+
+void Entity::Move(float deltaTime)
+{
+	m_Position->x += target.TargetDirection->x * deltaTime;
+	m_Position->y += target.TargetDirection->y * deltaTime;
 
 	std::cout << m_Position->x << " " << m_Position->y << std::endl;
 }
 
 void Entity::Update(float deltaTime)
 {
+
+	float distance = deltaTime * m_Speed;
+	Vector2f translation = distance * mDirection;
+	mShape.move(translation);
+
+	Move(deltaTime);
 	m_Collider->UpdateCollider(m_Position, m_Width, m_Height);
 }
 
