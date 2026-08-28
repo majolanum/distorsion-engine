@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "Drawable.h"
 
-void Window::OpenWindow(const char* windowName)
+void Window::OpenWindow(const char* windowName, float Width, float Height)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
@@ -10,7 +10,7 @@ void Window::OpenWindow(const char* windowName)
 		exit(1);
 	}
 
-	m_MainWindow = SDL_CreateWindow(windowName, 20, 20, 1000, 500, 0);
+	m_MainWindow = SDL_CreateWindow(windowName, 20, 20, Width, Height, 0);
 	if (m_MainWindow == NULL)
 	{
 		std::cout << "Erreur lors de la creation de la fenêtre" << std::endl;
@@ -42,7 +42,6 @@ void Window::Draw(Drawable* d)
 
 Window::~Window()
 {
-	ClearWindow();
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_MainWindow);
 	m_Renderer = nullptr;

@@ -16,7 +16,7 @@ protected:
 	bool isWindowOpen;
 
 public:
-	void OpenWindow(const char* windowName="Distortion engine");
+	void OpenWindow(const char* windowName = "Distortion engine", float Width = 1000, float Height = 500);
 
 	void ClearWindow();
 

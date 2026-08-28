@@ -19,15 +19,15 @@ int main(int argc, char* argv[])
 	window->OpenWindow();
 
 	Entity* test = new Entity(new Vector2f(50, 50), "../../res/Lib2D/PlaceHolder.png");
-	test->GoToPosition(new Vector2f(500, 500), 10);
+
 	InputManager* im = InputManager::Get();
 	SDL_Event event;
 
 	float DeltaTime = 0, TotalElapsed = 0;
 	int FramCount = 0;
-	Timer *fps = new Timer();
-
-	while (true)
+	Timer* fps = new Timer();
+	bool run = true;
+	while (run)
 	{
 		fps->StartTimer();
 		window->ClearWindow();
@@ -36,12 +36,20 @@ int main(int argc, char* argv[])
 		{
 			im->Update(event);
 		}
-		
+		if (im->IsKeyDown(Key_echap))
+		{
+			delete window;
+			SDL_Quit();
+			run = false;
+			continue;
+		}
+
+		test->GoToPosition(new Vector2f(200, 200), 1);
 		test->Update(DeltaTime);
 		test->Draw(window);
 
 		window->Present();
-				
+
 		DeltaTime = fps->EndTimer();
 
 		int diff = TARGET_ELAPSED - DeltaTime;
@@ -61,6 +69,5 @@ int main(int argc, char* argv[])
 		FramCount++;
 	}
 
-	delete window;
 	return 0;
 }

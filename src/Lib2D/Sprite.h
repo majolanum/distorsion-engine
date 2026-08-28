@@ -24,10 +24,15 @@ public:
 	void SetTextureSize(int newWidth, int newHeight) { m_Width = newWidth; m_Height = newHeight; }
 	void Draw(Window*) override;
 
+	void GetSize(int* width, int* height) {
+		*width = m_Width; *height = m_Height;
+	};
 
 	int GetWidth() const { return m_Width; }
 	int GetHeight() const { return m_Height; }
 	~Sprite();
+
+	friend class Entity;
 };
 
 

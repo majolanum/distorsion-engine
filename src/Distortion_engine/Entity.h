@@ -12,10 +12,14 @@ class Entity : public Sprite
 		Vector2f* TargetDirection = nullptr;
 		bool IsSet = false;
 	};
-	Target target;
+	Target m_Target;
+
 private:
 	Collider* m_Collider;
-	float m_Speed = 0;
+	Sprite* m_Sprite;
+
+	int m_Speed = 0;
+
 	void Move(float deltaTime);
 
 protected:
@@ -23,16 +27,17 @@ protected:
 
 	void SetIndex(int index) { m_Index = index; }
 
+	void SetPosition(Vector2f* Position) { m_Position = Position; }
 
 	int GetIndex() const { return m_Index; }
 
 public:
-	Entity(Vector2f* Position, std::string TexturPath = NULL);
+	Entity(Vector2f* Position, int width, int height, std::string TexturPath = NULL);
 
 	friend class Collider;
 
 	//TODO : a déplacer a la fin des test
-	void Draw(Window*);	
+	void Draw(Window*);
 	void GoToDirection(Vector2f* position, float speed = -1);
 	void GoToPosition(Vector2f* Position, float speed = -1);
 	void Update(float deltaTime);

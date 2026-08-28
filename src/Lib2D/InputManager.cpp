@@ -12,7 +12,6 @@ InputManager* InputManager::Get()
 	return instance;
 }
 
-
 void InputManager::Update(SDL_Event event)
 {
 	for (auto& key : m_KeysState)
