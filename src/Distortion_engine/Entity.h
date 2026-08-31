@@ -16,14 +16,18 @@ class Entity : public Sprite
 
 private:
 	Collider* m_Collider;
-	Sprite* m_Sprite;
-
+	
 	int m_Speed = 0;
+	bool ToDestroy= false;
 
 	void Move(float deltaTime);
 
 protected:
 	int m_Index = 0;
+	
+	//virtual void OnInitialize() = 0;
+	//virtual void OnUpdate() = 0;
+	//virtual void OnDestroy() = 0;
 
 	void SetIndex(int index) { m_Index = index; }
 
@@ -32,13 +36,18 @@ protected:
 	int GetIndex() const { return m_Index; }
 
 public:
-	Entity(Vector2f* Position, int width, int height, std::string TexturPath = NULL);
+	Entity(Vector2f* Position, int width, int height, std::string TexturPath);
 
-	friend class Collider;
-
+	
 	//TODO : a déplacer a la fin des test
-	void Draw(Window*);
+	void Draw(Window*) override;
 	void GoToDirection(Vector2f* position, float speed = -1);
+	bool IsAtTarget();
 	void GoToPosition(Vector2f* Position, float speed = -1);
 	void Update(float deltaTime);
+
+	~Entity();
+
+	friend class Collider;
+	friend class Scene;
 };

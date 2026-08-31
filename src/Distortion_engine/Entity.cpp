@@ -7,7 +7,7 @@ Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath
 {
 	if (!TexturPath.empty())
 	{
-		m_Sprite->SetTextureSize(m_Width, m_Height);
+		SetTextureSize(width, height);
 	}
 	m_Collider = new Collider();
 }
@@ -19,6 +19,24 @@ void Entity::GoToDirection(Vector2f* position, float speed)
 	{
 		m_Speed = speed;
 	}
+}
+
+bool Entity::IsAtTarget()
+{
+	if (m_Target.IsSet)
+	{
+		float distanceToTargetX = m_Target.TargetPosition->x - m_Position->x;
+		float distanceToTargetY = m_Target.TargetPosition->y - m_Position->y;
+
+		if (distanceToTargetX < 0.5f || distanceToTargetY < 0.5f)
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
 }
 
 void Entity::GoToPosition(Vector2f* position, float speed)
@@ -35,10 +53,8 @@ void Entity::GoToPosition(Vector2f* position, float speed)
 		m_Target.TargetDirection = new Vector2f(targetDirectionX, targetDirectionY);
 		m_Target.TargetDirection->Normalize();
 
-		float distanceToTargetX = m_Target.TargetPosition->x - m_Position->x;
-		float distanceToTargetY = m_Target.TargetPosition->y - m_Position->y;
 
-		if (distanceToTargetX < 0.5f || distanceToTargetY < 0.5f)
+		if (IsAtTarget())
 		{
 			SetPosition(m_Target.TargetPosition);
 			m_Target.IsSet = false;
@@ -50,6 +66,11 @@ void Entity::GoToPosition(Vector2f* position, float speed)
 
 void Entity::Move(float deltaTime)
 {
+	if (IsAtTarget())
+	{
+		SetPosition(m_Target.TargetPosition);
+		m_Target.IsSet = false;
+	}
 	if (m_Target.IsSet)
 	{
 		float distance = deltaTime * m_Speed;
@@ -69,7 +90,14 @@ void Entity::Update(float deltaTime)
 	m_Collider->UpdateCollider(m_Position, m_Width, m_Height);
 }
 
+
 void Entity::Draw(Window* w)
 {
-	m_Sprite->Draw(w);
+	Sprite::Draw(w);
+}
+
+Entity::~Entity()
+{
+	delete m_Collider;
+	m_Collider = nullptr;
 }

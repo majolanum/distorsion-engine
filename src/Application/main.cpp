@@ -3,7 +3,7 @@
 
 #include "main.h"
 #include "Lib2D/Window.h"
-#include "Distortion_engine/Entity.h"
+#include "Distortion_engine/Scene.h"
 #include "Distortion_engine/Timer.h"
 
 #include "Lib2D/InputManager.h"
@@ -17,9 +17,11 @@ int main(int argc, char* argv[])
 	std::cout << "Hello, World!\n";
 	Window* window = new Window();
 	window->OpenWindow();
+	Scene* test = new Scene();
 
-	Entity* test = new Entity(new Vector2f(50, 50), "../../res/Lib2D/PlaceHolder.png");
-
+	test->NewEntity<Entity>(new Vector2f(50, 50), 50, 50, "../../res/Lib2D/PlaceHolder.png");//->GoToPosition(new Vector2f(200, 200), 1.f);
+	test->NewEntity<Entity>(new Vector2f(200, 200), 120, 120, "../../res/Lib2D/PlaceHolder.png");//->GoToPosition(new Vector2f(50, 50), 1.f);
+	
 	InputManager* im = InputManager::Get();
 	SDL_Event event;
 
@@ -44,7 +46,6 @@ int main(int argc, char* argv[])
 			continue;
 		}
 
-		test->GoToPosition(new Vector2f(200, 200), 1);
 		test->Update(DeltaTime);
 		test->Draw(window);
 
