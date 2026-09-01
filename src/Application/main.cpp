@@ -17,10 +17,10 @@ int main(int argc, char* argv[])
 	std::cout << "Hello, World!\n";
 	Window* window = new Window();
 	window->OpenWindow();
-	Scene* test = new Scene();
+	
+	Scene* test = new Scene("test");
 
-	test->NewEntity<Entity>(new Vector2f(50, 50), 50, 50, "../../res/Lib2D/PlaceHolder.png");//->GoToPosition(new Vector2f(200, 200), 1.f);
-	test->NewEntity<Entity>(new Vector2f(200, 200), 120, 120, "../../res/Lib2D/PlaceHolder.png");//->GoToPosition(new Vector2f(50, 50), 1.f);
+	test->NewEntity<Entity>(new Vector2f(50, 50), 50, 50)->GoToPosition(new Vector2f(200, 200), 1.f);
 	
 	InputManager* im = InputManager::Get();
 	SDL_Event event;

@@ -1,5 +1,11 @@
 #include "Scene.h"
 
+Scene::Scene(std::string sceneName): m_SceneName(sceneName)
+{
+	m_AllEntity.empty();
+	m_EntityToDestroy.empty();
+}
+
 void Scene::Update(float DeltaTime)
 {
 	for (Entity* e : m_AllEntity)
@@ -15,7 +21,7 @@ void Scene::Update(float DeltaTime)
 
 	for (Entity* e : m_EntityToDestroy)
 	{
-		//e->OnDestroy();
+		e->OnDestroy();
 		delete e;
 	}
 }
@@ -39,4 +45,15 @@ void Scene::Draw(Window* w)
 	{
 		e->Draw(w);
 	}
+}
+
+Scene::~Scene()
+{
+	for (Entity* e : m_AllEntity)
+	{
+		e->OnDestroy();
+		delete e;
+	}
+	m_AllEntity.empty();
+	m_EntityToDestroy.empty();
 }

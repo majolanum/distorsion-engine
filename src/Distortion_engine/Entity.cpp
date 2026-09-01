@@ -28,7 +28,7 @@ bool Entity::IsAtTarget()
 		float distanceToTargetX = m_Target.TargetPosition->x - m_Position->x;
 		float distanceToTargetY = m_Target.TargetPosition->y - m_Position->y;
 
-		if (distanceToTargetX < 0.5f || distanceToTargetY < 0.5f)
+		if (distanceToTargetX < 0.2f || distanceToTargetY < 0.2f)
 		{
 			return true;
 		}

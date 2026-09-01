@@ -12,16 +12,19 @@ private:
 	std::vector<Entity*> m_AllEntity;
 	std::vector<Entity*> m_EntityToDestroy;
 
+	std::string m_SceneName;
+
+	Scene(std::string sceneName);
 
 protected:
-	//virtual void OnInitialize() = 0;
-	//virtual void OnUpdate() = 0;
+	virtual void OnInitialize();
+	virtual void OnUpdate();
 
 public:
-	//TODO : a enlever apres les test
+	//TODO : a déplacer apres les test
 
 	template<typename T>
-	T* NewEntity(Vector2f* Position, int width, int height, std::string TexturPath = NULL);
+	T* NewEntity(Vector2f* Position, int width, int height, std::string TexturPath = "../../res/Lib2D/PlaceHolder.png");
 
 	template<typename T>
 	T* GetEntity();
@@ -32,6 +35,10 @@ public:
 
 	void RemoveEntity(Entity* entityToRemove, std::vector<Entity*>vector);
 	void Draw(Window*)override;
+
+	~Scene();
+
+	friend class SceneManager;
 };
 
 template<typename T>
