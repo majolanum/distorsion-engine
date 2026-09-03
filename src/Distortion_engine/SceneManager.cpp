@@ -16,7 +16,12 @@ void SceneManager::UpdateActualScene(float DeltaTime)
 	m_ActualScene->Update(DeltaTime);
 }
 
-bool SceneManager::ChangeScene(std::string sceneName)
+void SceneManager::DrawActualScene(Window*w)
+{
+	m_ActualScene->Draw(w);
+}
+
+bool SceneManager::ChangeSceneTo(std::string sceneName)
 {
 	for (Scene* scene : m_AllScene)
 	{

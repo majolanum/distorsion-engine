@@ -3,7 +3,8 @@
 
 #include "main.h"
 #include "Lib2D/Window.h"
-#include "Distortion_engine/Scene.h"
+#include "Distortion_engine/SceneManager.h"
+#include "Distortion_engine/TestScene.h"
 #include "Distortion_engine/Timer.h"
 
 #include "Lib2D/InputManager.h"
@@ -18,9 +19,8 @@ int main(int argc, char* argv[])
 	Window* window = new Window();
 	window->OpenWindow();
 	
-	Scene* test = new Scene("test");
-
-	test->NewEntity<Entity>(new Vector2f(50, 50), 50, 50)->GoToPosition(new Vector2f(200, 200), 1.f);
+	SceneManager::Get()->AddScene<TestScene>("test");
+	SceneManager::Get()->ChangeSceneTo("test");
 	
 	InputManager* im = InputManager::Get();
 	SDL_Event event;
@@ -46,8 +46,8 @@ int main(int argc, char* argv[])
 			continue;
 		}
 
-		test->Update(DeltaTime);
-		test->Draw(window);
+		SceneManager::Get()->UpdateActualScene(DeltaTime);
+		SceneManager::Get()->DrawActualScene(window);
 
 		window->Present();
 

@@ -1,6 +1,6 @@
 #include "Scene.h"
 
-Scene::Scene(std::string sceneName): m_SceneName(sceneName)
+Scene::Scene(std::string sceneName) : m_SceneName(sceneName)
 {
 	m_AllEntity.empty();
 	m_EntityToDestroy.empty();

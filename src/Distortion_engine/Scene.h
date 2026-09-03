@@ -14,11 +14,12 @@ private:
 
 	std::string m_SceneName;
 
-	Scene(std::string sceneName);
 
 protected:
-	virtual void OnInitialize();
-	virtual void OnUpdate();
+	Scene(std::string sceneName);
+
+	virtual void OnInitialize() {}
+	virtual void OnUpdate() {}
 
 public:
 	//TODO : a déplacer apres les test

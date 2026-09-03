@@ -25,9 +25,9 @@ private:
 protected:
 	int m_Index = 0;
 	
-	virtual void OnInitialize();
-	virtual void OnUpdate();
-	virtual void OnDestroy();
+	virtual void OnInitialize() {}
+	virtual void OnUpdate() {}
+	virtual void OnDestroy() {}
 
 	void SetIndex(int index) { m_Index = index; }
 
