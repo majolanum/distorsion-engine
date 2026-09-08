@@ -10,7 +10,7 @@ public:
 		x = _x; y = _y;
 	}
 
-	Vector2f Normalize();
+	Vector2f* Normalize();
 
 	friend class DEBUG;
 };

@@ -74,7 +74,7 @@ void Entity::Move(float deltaTime)
 	if (m_Target.IsSet)
 	{
 		float distance = deltaTime * m_Speed;
-		Vector2f* translation = new Vector2f(distance * m_Target.TargetDirection->x, distance * m_Target.TargetDirection->y);
+		Vector2f* translation = (new Vector2f(distance * m_Target.TargetDirection->x, distance * m_Target.TargetDirection->y))->Normalize();
 
 		m_Position->x += translation->x;
 		m_Position->y += translation->y;

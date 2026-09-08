@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-Vector2f Vector2f::Normalize()
+Vector2f* Vector2f::Normalize()
 {
 	float mag = std::sqrt(x * x + y * y);
 	if (mag > 0)
@@ -11,5 +11,5 @@ Vector2f Vector2f::Normalize()
 		y /= mag;
 	}
 
-	return *this;
+	return this;
 }

@@ -1,16 +1,5 @@
 #include "SceneManager.h"
 
-SceneManager* SceneManager::instance = nullptr;
-
-SceneManager* SceneManager::Get()
-{
-	if (instance == nullptr)
-	{
-		instance = new SceneManager();
-	}
-	return instance;
-}
-
 void SceneManager::UpdateActualScene(float DeltaTime)
 {
 	m_ActualScene->Update(DeltaTime);
@@ -28,6 +17,7 @@ bool SceneManager::ChangeSceneTo(std::string sceneName)
 		if (scene->m_SceneName == sceneName)
 		{
 			m_ActualScene = scene;
+			m_ActualScene->OnInitialize();
 			return true;
 		}
 	}
