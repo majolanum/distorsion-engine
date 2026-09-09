@@ -1,0 +1,12 @@
+#include "TestGame.h"
+
+void TestGame::OnInitialize()
+{
+	m_SceneManager->AddScene<TestScene>("test");
+	m_SceneManager->ChangeSceneTo("test");
+}
+
+void TestGame::OnUpdate()
+{
+	
+}

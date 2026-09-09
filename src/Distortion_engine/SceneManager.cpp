@@ -23,3 +23,13 @@ bool SceneManager::ChangeSceneTo(std::string sceneName)
 	}
 	return false;
 }
+
+SceneManager::~SceneManager()
+{
+
+	for (Scene* s : m_AllScene)
+	{
+		delete s;
+	}
+	m_AllScene.clear();
+}

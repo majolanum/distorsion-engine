@@ -1,6 +1,7 @@
 #include <iostream>
 #include "main.h"
 #include "Application/Application.h"
+#include "Distortion_engine/Game.h"
 
 int main(int argc, char* argv[])
 {
@@ -8,6 +9,8 @@ int main(int argc, char* argv[])
 	Application* App = new Application();
 
 	bool run = App->InitApplication();
+	App->AddGame<Game>("test");
+	App->ChangeGame("test");
 
 	while (run)
 		App->RunApplication(&run);

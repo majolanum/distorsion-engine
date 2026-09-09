@@ -26,6 +26,7 @@ void Window::OpenWindow(const char* windowName, float Width, float Height)
 		exit(1);
 	}
 	isWindowOpen = true;
+
 }
 
 void Window::ClearWindow()

@@ -8,11 +8,10 @@ bool Application::InitApplication()
 		m_MainWindow = new Window();
 		m_MainWindow->OpenWindow();
 
-		SceneManager::Get()->AddScene<TestScene>("test");
-		SceneManager::Get()->ChangeSceneTo("test");
-
 		m_ImputeManager = InputManager::Get();
 		
+		m_ActualGame = nullptr;
+
 		m_FPSTimer = new Timer();
 		return true;
 	}
@@ -32,9 +31,12 @@ void Application::RunApplication(bool* Run)
 
 	if (*run == false)
 		return;
-
-	SceneManager::Get()->UpdateActualScene(DeltaTime);
-	SceneManager::Get()->DrawActualScene(m_MainWindow);
+	
+	if (m_ActualGame != nullptr)
+	{
+		m_ActualGame->Update(DeltaTime);
+		m_ActualGame->DrawActualGame(m_MainWindow);
+	}
 
 	m_MainWindow->Present();
 
@@ -59,7 +61,11 @@ void Application::RunApplication(bool* Run)
 
 void Application::EndApplication()
 {
-
+	for (Game* g : m_AllGame)
+	{
+		delete g;
+	}
+	m_AllGame.clear();
 }
 
 void Application::GetEvent()
@@ -74,5 +80,17 @@ void Application::GetEvent()
 		SDL_Quit();
 		*run = false;
 		return;
+	}
+}
+
+void Application::ChangeGame(std::string gameName)
+{
+	for (Game* g : m_AllGame)
+	{
+		if (g->m_Name == gameName)
+		{
+			m_ActualGame = g;
+			m_ActualGame->Initialize();
+		}
 	}
 }

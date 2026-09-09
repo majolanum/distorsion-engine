@@ -2,8 +2,8 @@
 
 Scene::Scene(std::string sceneName) : m_SceneName(sceneName)
 {
-	m_AllEntity.empty();
-	m_EntityToDestroy.empty();
+	m_AllEntity.clear();
+	m_EntityToDestroy.clear();
 }
 
 void Scene::Update(float DeltaTime)
@@ -54,6 +54,14 @@ Scene::~Scene()
 		e->OnDestroy();
 		delete e;
 	}
-	m_AllEntity.empty();
-	m_EntityToDestroy.empty();
+	m_AllEntity.clear();
+	if (!m_EntityToDestroy.empty())
+	{
+		for (Entity* e : m_EntityToDestroy)
+		{
+			e->OnDestroy();
+			delete e;
+		}
+	}
+	m_EntityToDestroy.clear();
 }

@@ -9,15 +9,18 @@ private:
 	std::vector<Scene*> m_AllScene;
 	Scene* m_ActualScene;
 
-public:
-
 	void UpdateActualScene(float DeltaTime);
 	void DrawActualScene(Window*);
 
+public:
 	bool ChangeSceneTo(std::string sceneName);
 
 	template<typename T>
 	void AddScene(std::string sceneName);
+
+	~SceneManager();
+
+	friend class Game;
 };
 
 template<typename T>
