@@ -1,7 +1,6 @@
 #include "Application.h"
 
-
-bool Application::InitApplication()
+bool* Application::InitApplication()
 {
 	try
 	{
@@ -13,23 +12,24 @@ bool Application::InitApplication()
 		m_ActualGame = nullptr;
 
 		m_FPSTimer = new Timer();
-		return true;
+		run = true;
 	}
 	catch (std::exception ex)
 	{
-		return false;
+		run = false;
 	}
+	return &run;
 }
 
-void Application::RunApplication(bool* Run)
+void Application::RunApplication()
 {
-	run = Run;
+	
 	m_FPSTimer->StartTimer();
 	m_MainWindow->ClearWindow();
 
 	GetEvent();
 
-	if (*run == false)
+	if (run == false)
 		return;
 	
 	if (m_ActualGame != nullptr)
@@ -48,6 +48,9 @@ void Application::RunApplication(bool* Run)
 		SDL_Delay(diff);
 		DeltaTime = TARGET_ELAPSED;
 	}
+
+	if(m_ActualGame)
+		m_ActualGame->SetDeltaTime(DeltaTime);
 
 	TotalElapsed += DeltaTime;
 	if (TotalElapsed >= 1000)
@@ -78,7 +81,7 @@ void Application::GetEvent()
 	{
 		delete m_MainWindow;
 		SDL_Quit();
-		*run = false;
+		run = false;
 		return;
 	}
 }

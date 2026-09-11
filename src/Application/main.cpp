@@ -1,19 +1,19 @@
 #include <iostream>
 #include "main.h"
 #include "Application/Application.h"
-#include "Distortion_engine/Game.h"
+#include "Application/TestGame.h"
 
 int main(int argc, char* argv[])
 {
 	std::cout << "Hello, World!\n";
 	Application* App = new Application();
 
-	bool run = App->InitApplication();
-	App->AddGame<Game>("test");
+	bool* run = App->InitApplication();
+	App->AddGame<TestGame>("test");
 	App->ChangeGame("test");
 
-	while (run)
-		App->RunApplication(&run);
+	while (*run)
+		App->RunApplication();
 
 	App->EndApplication();
 	return 0;

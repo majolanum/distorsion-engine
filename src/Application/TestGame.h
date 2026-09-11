@@ -5,7 +5,7 @@
 class TestGame : public Game
 {
 public:
-	//TestGame(std::string ameName) : Game(ameName) {}
+	TestGame(std::string gameName) : Game(gameName) {}
 
 	void OnInitialize() override;
 	void OnUpdate() override;

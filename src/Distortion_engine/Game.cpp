@@ -1,7 +1,8 @@
 #include "Game.h"
 void Game::Initialize()
 {
-	if (m_IsInitialized) return;
+	if (m_IsInitialized) 
+		return;
 	m_IsInitialized = true;
 
 	if (m_SceneManager == nullptr)

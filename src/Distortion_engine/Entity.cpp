@@ -1,15 +1,12 @@
 #include <iostream>
-
 #include "Entity.h"
 
-Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath) :
-	Sprite(TexturPath, Position->x, Position->y)
+Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath, bool canCollide, int colliderType) :
+	Sprite(TexturPath, Position->x, Position->y), Collider(colliderType)
 {
+	CanCollide = canCollide;
 	if (!TexturPath.empty())
-	{
 		SetTextureSize(width, height);
-	}
-	m_Collider = new Collider();
 }
 
 void Entity::GoToDirection(Vector2f* position, float speed)
@@ -53,7 +50,6 @@ void Entity::GoToPosition(Vector2f* position, float speed)
 		m_Target.TargetDirection = new Vector2f(targetDirectionX, targetDirectionY);
 		m_Target.TargetDirection->Normalize();
 
-
 		if (IsAtTarget())
 		{
 			SetPosition(m_Target.TargetPosition);
@@ -78,26 +74,16 @@ void Entity::Move(float deltaTime)
 
 		m_Position->x += translation->x;
 		m_Position->y += translation->y;
-		std::cout << m_Position->x << " " << m_Position->y << std::endl;
 	}
-
 }
-
 
 void Entity::Update(float deltaTime)
 {
 	Move(deltaTime);
-	m_Collider->UpdateCollider(m_Position, m_Width, m_Height);
+	UpdateCollider(m_Position, m_Width, m_Height);
 }
-
 
 void Entity::Draw(Window* w)
 {
 	Sprite::Draw(w);
-}
-
-Entity::~Entity()
-{
-	delete m_Collider;
-	m_Collider = nullptr;
 }

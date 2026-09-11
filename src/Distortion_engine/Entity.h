@@ -4,7 +4,7 @@
 #include "Lib2D/Sprite.h"
 #include "Lib2D/Collider.h"
 
-class Entity : public Sprite
+class Entity : public Sprite, public Collider
 {
 	struct Target
 	{
@@ -14,39 +14,32 @@ class Entity : public Sprite
 	};
 	Target m_Target;
 
-private:
-	Collider* m_Collider;
-	
+private:	
 	int m_Speed = 0;
 	bool ToDestroy= false;
+	bool CanCollide; 
+	int m_Index = 0;
 
 	void Move(float deltaTime);
+	void Update(float deltaTime);
+	void Draw(Window*) override;
+	bool IsAtTarget();
 
 protected:
-	int m_Index = 0;
+	Entity(Vector2f* Position, int width, int height, std::string TexturPath, bool canCollide, int colliderType);
 	
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
 	virtual void OnDestroy() {}
 
 	void SetIndex(int index) { m_Index = index; }
-
-	void SetPosition(Vector2f* Position) { m_Position = Position; }
-
 	int GetIndex() const { return m_Index; }
 
 public:
-	Entity(Vector2f* Position, int width, int height, std::string TexturPath);
-
-	
-	//TODO : a déplacer a la fin des test
-	void Draw(Window*) override;
-	void GoToDirection(Vector2f* position, float speed = -1);
-	bool IsAtTarget();
+	void SetPosition(Vector2f* Position) { m_Position = Position; }
 	void GoToPosition(Vector2f* Position, float speed = -1);
-	void Update(float deltaTime);
 
-	~Entity();
+	void GoToDirection(Vector2f* position, float speed = -1);
 
 	friend class Collider;
 	friend class Scene;

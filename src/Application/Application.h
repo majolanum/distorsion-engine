@@ -25,20 +25,19 @@ private:
 	int FramCount = 0;
 	Timer* m_FPSTimer;
 
-	bool* run;
+	bool run = false;
 
 	void GetEvent();
 
 public:
-	bool InitApplication();
-	void RunApplication(bool* run);
+	bool* InitApplication();
+	void RunApplication();
 	void EndApplication();
 
 	template<typename T>
 	void AddGame(std::string gameName);
 	
 	void ChangeGame(std::string gameName);
-
 };
 
 template<typename T>

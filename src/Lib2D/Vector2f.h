@@ -10,6 +10,8 @@ public:
 		x = _x; y = _y;
 	}
 
+	float GetDistance(Vector2f* other);
+
 	Vector2f* Normalize();
 
 	friend class DEBUG;

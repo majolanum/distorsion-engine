@@ -14,6 +14,7 @@ private:
 
 	std::string m_SceneName;
 
+	void Update(float DeltaTime);
 
 protected:
 	Scene(std::string sceneName);
@@ -21,18 +22,18 @@ protected:
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
 
-public:
-	//TODO : a déplacer apres les test
-
+	/// <summary>
+/// collider type : 0 = non, 1 = rect, 2 circle
+/// </summary>
 	template<typename T>
-	T* NewEntity(Vector2f* Position, int width, int height, std::string TexturPath = "../../res/Lib2D/PlaceHolder.png");
+	T* NewEntity(Vector2f* Position, int width, int height, bool canCollide = false,
+		int colliderType = 0, std::string TexturPath = "../../res/Lib2D/PlaceHolder.png");
 
 	template<typename T>
 	T* GetEntity();
 
 	template<typename T>
 	std::vector<T*> GetAllEntity();
-	void Update(float DeltaTime);
 
 	void RemoveEntity(Entity* entityToRemove, std::vector<Entity*>vector);
 	void Draw(Window*)override;
@@ -43,9 +44,10 @@ public:
 };
 
 template<typename T>
-inline T* Scene::NewEntity(Vector2f* Position, int width, int height, std::string TexturPath)
+inline T* Scene::NewEntity(Vector2f* Position, int width, int height, bool canCollide,
+	int colliderType, std::string TexturPath)
 {
-	T* NewEntity = new T(Position, width, height, TexturPath);
+	T* NewEntity = new T(Position, width, height, TexturPath, canCollide, colliderType);
 	m_AllEntity.push_back(NewEntity);
 	return NewEntity;
 }

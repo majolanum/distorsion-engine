@@ -19,11 +19,26 @@ void Scene::Update(float DeltaTime)
 		}
 	}
 
+	for (Entity* entity : m_AllEntity)
+	{
+		for (Entity* otherEntity : m_AllEntity)
+		{
+			if (entity->CanCollide && otherEntity->CanCollide)
+			{
+				if (entity != otherEntity)
+				{
+					entity->IsCollide(otherEntity);
+				}
+			}
+		}
+	}
+
 	for (Entity* e : m_EntityToDestroy)
 	{
 		e->OnDestroy();
 		delete e;
 	}
+	m_EntityToDestroy.clear();
 }
 
 void Scene::RemoveEntity(Entity* entityToRemove, std::vector<Entity*> vector)
