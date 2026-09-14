@@ -3,6 +3,7 @@
 void SceneManager::UpdateActualScene(float DeltaTime)
 {
 	m_ActualScene->Update(DeltaTime);
+	m_ActualScene->OnUpdate();
 }
 
 void SceneManager::DrawActualScene(Window*w)

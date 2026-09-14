@@ -16,24 +16,30 @@ class Entity : public Sprite, public Collider
 
 private:	
 	int m_Speed = 0;
+	int m_Index = 0;
 	bool ToDestroy= false;
 	bool CanCollide; 
-	int m_Index = 0;
+	bool HaveRigBody;
 
 	void Move(float deltaTime);
 	void Update(float deltaTime);
 	void Draw(Window*) override;
 	bool IsAtTarget();
+	void Repulse();
 
 protected:
-	Entity(Vector2f* Position, int width, int height, std::string TexturPath, bool canCollide, int colliderType);
+	Entity(Vector2f* Position, int width, int height, std::string TexturPath, bool canCollide, int colliderType, bool haveRigBody);
 	
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
+	virtual void OnCollide(Entity* collideWith) {}
 	virtual void OnDestroy() {}
 
 	void SetIndex(int index) { m_Index = index; }
 	int GetIndex() const { return m_Index; }
+
+	void SetCollider(bool newState) { CanCollide = newState; }
+	void SetRigBody(bool newState) { HaveRigBody = newState; }
 
 public:
 	void SetPosition(Vector2f* Position) { m_Position = Position; }

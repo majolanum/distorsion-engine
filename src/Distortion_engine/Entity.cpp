@@ -1,9 +1,11 @@
 #include <iostream>
 #include "Entity.h"
 
-Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath, bool canCollide, int colliderType) :
+Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath,
+	bool canCollide, int colliderType, bool haveRigBody) :
 	Sprite(TexturPath, Position->x, Position->y), Collider(colliderType)
 {
+	HaveRigBody = haveRigBody;
 	CanCollide = canCollide;
 	if (!TexturPath.empty())
 		SetTextureSize(width, height);
@@ -34,6 +36,11 @@ bool Entity::IsAtTarget()
 	}
 	else
 		return false;
+}
+
+void Entity::Repulse()
+{
+
 }
 
 void Entity::GoToPosition(Vector2f* position, float speed)

@@ -14,6 +14,7 @@ private:
 
 public:
 	bool ChangeSceneTo(std::string sceneName);
+	bool SceneFinished() { return m_ActualScene->m_SceneCompleted; }
 
 	template<typename T>
 	void AddScene(std::string sceneName);

@@ -125,11 +125,4 @@ void InputManager::UpdateMouse(SDL_Event event)
 		break;
 	}
 	}
-	system("cls");
-	for(auto & key : m_MouseState)
-	{ 
-		
-		std::cout << key.first << "  ";
-		std::cout << key.second.isDown << "/" << key.second.isHeld << "/" << key.second.isRelease << std::endl;
-	}
 }

@@ -19,19 +19,7 @@ void Scene::Update(float DeltaTime)
 		}
 	}
 
-	for (Entity* entity : m_AllEntity)
-	{
-		for (Entity* otherEntity : m_AllEntity)
-		{
-			if (entity->CanCollide && otherEntity->CanCollide)
-			{
-				if (entity != otherEntity)
-				{
-					entity->IsCollide(otherEntity);
-				}
-			}
-		}
-	}
+	DoCollide();
 
 	for (Entity* e : m_EntityToDestroy)
 	{
@@ -39,6 +27,34 @@ void Scene::Update(float DeltaTime)
 		delete e;
 	}
 	m_EntityToDestroy.clear();
+}
+
+void Scene::DoCollide()
+{
+	for (Entity* entity : m_AllEntity)
+	{
+		for (Entity* otherEntity : m_AllEntity)
+		{
+			if (entity != otherEntity)
+			{
+				if (entity->CanCollide && otherEntity->CanCollide)
+				{
+					if (entity->IsCollide(otherEntity))
+					{
+						entity->OnCollide(otherEntity);
+						otherEntity->OnCollide(entity);
+
+						if (entity->HaveRigBody && otherEntity->HaveRigBody)
+						{
+							//TODO : faire le repusle
+							entity->Repulse();
+							otherEntity->Repulse();
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 void Scene::RemoveEntity(Entity* entityToRemove, std::vector<Entity*> vector)

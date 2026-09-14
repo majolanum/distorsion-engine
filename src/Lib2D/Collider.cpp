@@ -1,11 +1,6 @@
 #include <iostream>
 #include "Collider.h"
 
-Collider::Collider(int colliderType) :ColliderType(colliderType)
-{
-
-}
-
 void Collider::UpdateCollider(Vector2f* OwnerPosition, int Width, int Height)
 {
 	m_ColliderPosition = { (int)OwnerPosition->x, (int)OwnerPosition->y,Width,Height };
@@ -28,12 +23,12 @@ bool Collider::IsCollide(Collider* otherCollider)
 		{
 		case 1:
 		{
-			RectCollide(otherCollider->m_ColliderPosition);
+			return RectCollide(otherCollider->m_ColliderPosition);
 			break;
 		}
 		case 2:
 		{
-			CircleRectCollide(otherCollider->m_ColliderPosition);
+			return CircleRectCollide(otherCollider->m_ColliderPosition);
 			break;
 		}
 		}
@@ -45,12 +40,12 @@ bool Collider::IsCollide(Collider* otherCollider)
 		{
 		case 1:
 		{
-			CircleRectCollide(otherCollider->m_ColliderPosition);
+			return CircleRectCollide(otherCollider->m_ColliderPosition);
 			break;
 		}
 		case 2:
 		{
-			CircleCollide(otherCollider->m_ColliderPosition,otherCollider->Radius);
+			return CircleCollide(otherCollider->m_ColliderPosition,otherCollider->Radius);
 			break;
 		}
 		}

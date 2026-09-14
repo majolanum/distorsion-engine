@@ -14,15 +14,15 @@ private:
 	int ColliderType;
 	int Radius;
 
-public:
-
-	Collider(int colliderType);
-
-	void UpdateCollider(Vector2f* OwnerPosition, int Width, int Height);
-
 	bool IsCollide(Collider* otherCollider);
 	bool RectCollide(SDL_Rect otherPosition);
 	bool CircleRectCollide(SDL_Rect otherPosition);
 	bool CircleCollide(SDL_Rect otherPosition, int otherRadius);
+
+protected:
+	Collider(int colliderType) :ColliderType(colliderType) {}
+	void UpdateCollider(Vector2f* OwnerPosition, int Width, int Height);
+
+	friend class Scene;
 };
 

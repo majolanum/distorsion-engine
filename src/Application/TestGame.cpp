@@ -8,5 +8,8 @@ void TestGame::OnInitialize()
 
 void TestGame::OnUpdate()
 {
-	
+	if (m_SceneManager->SceneFinished())
+	{
+
+	}
 }

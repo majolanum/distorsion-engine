@@ -15,19 +15,23 @@ private:
 	std::string m_SceneName;
 
 	void Update(float DeltaTime);
+	void DoCollide();
 
 protected:
 	Scene(std::string sceneName);
+	bool m_SceneCompleted = false;
+	std::string TemplateIMG = "../../res/Lib2D/PlaceHolder.png";
 
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
+	virtual void OnEnd() {}
 
 	/// <summary>
-/// collider type : 0 = non, 1 = rect, 2 circle
+/// collider type : 0 = non, 1 = rect, 2 = circle
 /// </summary>
 	template<typename T>
-	T* NewEntity(Vector2f* Position, int width, int height, bool canCollide = false,
-		int colliderType = 0, std::string TexturPath = "../../res/Lib2D/PlaceHolder.png");
+	T* NewEntity(Vector2f* Position, int width, int height, std::string TexturPath,
+		bool canCollide = false, int colliderType = 0, bool haveRigBody = false);
 
 	template<typename T>
 	T* GetEntity();
@@ -44,10 +48,10 @@ protected:
 };
 
 template<typename T>
-inline T* Scene::NewEntity(Vector2f* Position, int width, int height, bool canCollide,
-	int colliderType, std::string TexturPath)
+inline T* Scene::NewEntity(Vector2f* Position, int width, int height, std::string TexturPath
+	, bool canCollide, int colliderType, bool haveRigBody)
 {
-	T* NewEntity = new T(Position, width, height, TexturPath, canCollide, colliderType);
+	T* NewEntity = new T(Position, width, height, TexturPath, canCollide, colliderType, haveRigBody);
 	m_AllEntity.push_back(NewEntity);
 	return NewEntity;
 }
