@@ -1,5 +1,14 @@
 #include "Application.h"
 
+Application* Application::instance = nullptr;
+
+Application* Application::Get()
+{
+	if (instance == nullptr)
+		instance = new Application;
+	return instance;
+}
+
 bool* Application::InitApplication()
 {
 	try
@@ -8,7 +17,7 @@ bool* Application::InitApplication()
 		m_MainWindow->OpenWindow();
 
 		m_ImputeManager = InputManager::Get();
-		
+
 		m_ActualGame = nullptr;
 
 		m_FPSTimer = new Timer();
@@ -23,7 +32,6 @@ bool* Application::InitApplication()
 
 void Application::RunApplication()
 {
-	
 	m_FPSTimer->StartTimer();
 	m_MainWindow->ClearWindow();
 
@@ -31,12 +39,20 @@ void Application::RunApplication()
 
 	if (run == false)
 		return;
-	
+
 	if (m_ActualGame != nullptr)
 	{
 		m_ActualGame->Update(DeltaTime);
-		m_ActualGame->DrawActualGame(m_MainWindow);
+		if (!m_ActualGame->IsRuning)
+		{
+			m_ActualGame->EndGame();
+			m_ActualGame = nullptr;
+		}
+		else
+			m_ActualGame->DrawActualGame(m_MainWindow);
 	}
+	else
+		ChooseGame();
 
 	m_MainWindow->Present();
 
@@ -48,9 +64,7 @@ void Application::RunApplication()
 		SDL_Delay(diff);
 		DeltaTime = TARGET_ELAPSED;
 	}
-
-	if(m_ActualGame)
-		m_ActualGame->SetDeltaTime(DeltaTime);
+	DeltaTime::SetDeltaTime(DeltaTime);
 
 	TotalElapsed += DeltaTime;
 	if (TotalElapsed >= 1000)
@@ -84,6 +98,24 @@ void Application::GetEvent()
 		run = false;
 		return;
 	}
+}
+
+void Application::ChooseGame()
+{
+	int choose = 0;
+	int i = 0;
+	system("cls");
+	for (Game* g : m_AllGame)
+	{
+		std::cout << g->m_Name << " = " << i << std::endl;
+	}
+	std::cin >> choose;
+	if (choose != -1)
+	{
+		ChangeGame(m_AllGame[choose]->m_Name);
+	}
+	else
+		run = false;
 }
 
 void Application::ChangeGame(std::string gameName)

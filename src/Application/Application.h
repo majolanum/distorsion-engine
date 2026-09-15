@@ -27,9 +27,14 @@ private:
 
 	bool run = false;
 
+	Application() {}
+	static Application* instance;
+
 	void GetEvent();
 
 public:
+	static Application* Get();
+
 	bool* InitApplication();
 	void RunApplication();
 	void EndApplication();
@@ -37,6 +42,7 @@ public:
 	template<typename T>
 	void AddGame(std::string gameName);
 	
+	void ChooseGame();
 	void ChangeGame(std::string gameName);
 };
 

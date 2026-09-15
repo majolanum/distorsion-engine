@@ -5,13 +5,11 @@
 
 int main(int argc, char* argv[])
 {
-	std::cout << "Hello, World!\n";
-	Application* App = new Application();
+	Application* App = Application::Get();
 
 	bool* run = App->InitApplication();
 	App->AddGame<TestGame>("test");
-	App->ChangeGame("test");
-
+	
 	while (*run)
 		App->RunApplication();
 

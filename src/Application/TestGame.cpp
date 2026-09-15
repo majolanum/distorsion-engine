@@ -10,6 +10,6 @@ void TestGame::OnUpdate()
 {
 	if (m_SceneManager->SceneFinished())
 	{
-
+		IsRuning = false;
 	}
 }

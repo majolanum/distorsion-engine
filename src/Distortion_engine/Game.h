@@ -11,25 +11,21 @@ private:
 	std::string m_Name;
 	bool m_IsInitialized = false;
 
-	float m_DeltaTime;
-	void SetDeltaTime(float dt) { m_DeltaTime = dt; }
-
 	void Initialize();
 	void Update(float deltaTime);
 	void DrawActualGame(Window* w);
-
+	void EndGame();
 
 protected:
 	Game(std::string gameName) : m_Name(gameName) {}
+	bool IsRuning;
 
 	SceneManager* m_SceneManager;
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
 
-	float GetDeltaTime() { return m_DeltaTime; }
-
 	~Game();
 
+public:
 	friend class Application;
 };
-

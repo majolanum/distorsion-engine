@@ -4,6 +4,19 @@
 #include "Lib2D/Sprite.h"
 #include "Lib2D/Collider.h"
 
+struct DeltaTime
+{
+private:
+	static inline float m_DeltaTime = 0.0f;
+	static void SetDeltaTime(float deltaTime) { m_DeltaTime = deltaTime; }
+
+public:
+	static float GetDeltaTime() { return m_DeltaTime; }
+	friend class Application;
+};
+
+
+
 class Entity : public Sprite, public Collider
 {
 	struct Target
@@ -14,11 +27,11 @@ class Entity : public Sprite, public Collider
 	};
 	Target m_Target;
 
-private:	
+private:
 	int m_Speed = 0;
 	int m_Index = 0;
-	bool ToDestroy= false;
-	bool CanCollide; 
+	bool ToDestroy = false;
+	bool CanCollide;
 	bool HaveRigBody;
 
 	void Move(float deltaTime);
@@ -29,7 +42,7 @@ private:
 
 protected:
 	Entity(Vector2f* Position, int width, int height, std::string TexturPath, bool canCollide, int colliderType, bool haveRigBody);
-	
+
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
 	virtual void OnCollide(Entity* collideWith) {}
