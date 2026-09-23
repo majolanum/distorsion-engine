@@ -6,4 +6,5 @@ void TestEntity::OnCollide(Entity* collideWith)
 	{
 		EndScene = true;
 	}
+	
 }

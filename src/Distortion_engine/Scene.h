@@ -16,11 +16,12 @@ private:
 
 	void Update(float DeltaTime);
 	void DoCollide();
+	void Draw(Window*)override;
 
 protected:
 	Scene(std::string sceneName);
 	bool m_SceneCompleted = false;
-	std::string TemplateIMG = "../../res/Lib2D/PlaceHolder.png";
+
 
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
@@ -39,8 +40,8 @@ protected:
 	template<typename T>
 	std::vector<T*> GetAllEntity();
 
+	bool IsInside(Entity* entity);
 	void RemoveEntity(Entity* entityToRemove, std::vector<Entity*>vector);
-	void Draw(Window*)override;
 
 	~Scene();
 

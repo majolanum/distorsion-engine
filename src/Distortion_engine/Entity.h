@@ -4,19 +4,6 @@
 #include "Lib2D/Sprite.h"
 #include "Lib2D/Collider.h"
 
-struct DeltaTime
-{
-private:
-	static inline float m_DeltaTime = 0.0f;
-	static void SetDeltaTime(float deltaTime) { m_DeltaTime = deltaTime; }
-
-public:
-	static float GetDeltaTime() { return m_DeltaTime; }
-	friend class Application;
-};
-
-
-
 class Entity : public Sprite, public Collider
 {
 	struct Target

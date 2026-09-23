@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "InputManager.h"
 
 Scene::Scene(std::string sceneName) : m_SceneName(sceneName)
 {
@@ -55,6 +56,20 @@ void Scene::DoCollide()
 			}
 		}
 	}
+}
+
+bool Scene::IsInside(Entity* entity)
+{
+	Vector2f* mousPos = InputManager::Get()->GetMousePosition();
+	Vector2f* entityPos = entity->m_Position;
+	float entityWidth = entity->m_Width;
+	float entityHeight = entity->m_Height;
+
+	if (entityPos->x < mousPos->x && entityPos->y < mousPos->y &&
+		entityPos->x + entityWidth > mousPos->x && entityPos->y + entityHeight > mousPos->y)
+		return true;
+	else
+		return false;
 }
 
 void Scene::RemoveEntity(Entity* entityToRemove, std::vector<Entity*> vector)

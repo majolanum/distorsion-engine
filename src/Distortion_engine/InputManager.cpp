@@ -29,7 +29,6 @@ void InputManager::Update(SDL_Event event)
 		}
 	}
 
-
 	switch (event.type)
 	{
 	case SDL_KEYDOWN:

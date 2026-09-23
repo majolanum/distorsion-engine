@@ -21,6 +21,7 @@ void Game::DrawActualGame(Window* w)
 {
 	m_SceneManager->DrawActualScene(w);
 }
+
 void Game::EndGame()
 {
 	delete m_SceneManager;

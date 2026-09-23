@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include <unordered_map>
 
-#include "Vector2f.h"
+#include "Lib2D/Vector2f.h"
 
 const enum Key
 {
@@ -59,8 +59,8 @@ private:
 
 	std::unordered_map<SDL_Keycode, KeyState> m_KeysState;
 	std::unordered_map<Mouse, KeyState> m_MouseState;
-	
-	Vector2f* MousePos = nullptr;
+
+	Vector2f* MousePos = new Vector2f(0,0);
 
 public:
 	static InputManager* Get();
@@ -70,12 +70,12 @@ public:
 	bool IsKeyDown(Key key) { return m_KeysState[SDL_GetKeyFromScancode(SDL_GetScancodeFromKey(key))].isDown; }
 	bool IsKeyRelease(Key key) { return m_KeysState[SDL_GetKeyFromScancode(SDL_GetScancodeFromKey(key))].isRelease; }
 	bool IsKeyHeld(Key key) { return m_KeysState[SDL_GetKeyFromScancode(SDL_GetScancodeFromKey(key))].isHeld; }
-	
+
 	//partie souris
 	void UpdateMouse(SDL_Event events);
-	bool IsKeyDown(Mouse key) { return m_KeysState[key].isDown; }
-	bool IsKeyRelease(Mouse key) { return m_KeysState[key].isRelease; }
-	bool IsKeyHeld(Mouse key) { return m_KeysState[key].isHeld; }
+	bool IsKeyDown(Mouse key) { return m_MouseState[key].isDown; }
+	bool IsKeyRelease(Mouse key) { return m_MouseState[key].isRelease; }
+	bool IsKeyHeld(Mouse key) { return m_MouseState[key].isHeld; }
 
 	Vector2f* GetMousePosition() { return MousePos; }
 };

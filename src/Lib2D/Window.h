@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include "Vector2f.h"
+
 struct Drawable;
 
 class Window
@@ -16,7 +18,7 @@ protected:
 	bool isWindowOpen;
 
 public:
-	void OpenWindow(const char* windowName = "Distortion engine", float Width = 1000, float Height = 500);
+	Vector2f* OpenWindow(const char* windowName = "Distortion engine", float Width = 1000, float Height = 500);
 
 	void ClearWindow();
 
@@ -27,6 +29,7 @@ public:
 
 	~Window();
 	friend class Sprite;
+	friend class AssetManager;
 	friend class DEBUG;
 };
 

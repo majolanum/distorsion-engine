@@ -1,4 +1,6 @@
 #include "Application.h"
+#include "ApplicationInfo.h"
+#include "SelectGameG.h"
 
 Application* Application::instance = nullptr;
 
@@ -14,7 +16,7 @@ bool* Application::InitApplication()
 	try
 	{
 		m_MainWindow = new Window();
-		m_MainWindow->OpenWindow();
+		ApplicationInfo::SetWindowSize(m_MainWindow->OpenWindow());
 
 		m_ImputeManager = InputManager::Get();
 
@@ -22,6 +24,8 @@ bool* Application::InitApplication()
 
 		m_FPSTimer = new Timer();
 		run = true;
+
+		AddGame<SelectGameG>(m_SelecteGame, ApplicationInfo::GetTemplateLink());
 	}
 	catch (std::exception ex)
 	{
@@ -64,7 +68,7 @@ void Application::RunApplication()
 		SDL_Delay(diff);
 		DeltaTime = TARGET_ELAPSED;
 	}
-	DeltaTime::SetDeltaTime(DeltaTime);
+	ApplicationInfo::SetDeltaTime(DeltaTime);
 
 	TotalElapsed += DeltaTime;
 	if (TotalElapsed >= 1000)
@@ -102,20 +106,14 @@ void Application::GetEvent()
 
 void Application::ChooseGame()
 {
-	int choose = 0;
-	int i = 0;
-	system("cls");
-	for (Game* g : m_AllGame)
+	if (m_ActualGame == nullptr)
 	{
-		std::cout << g->m_Name << " = " << i << std::endl;
+		ChangeGame(m_SelecteGame);
+		if (!dynamic_cast<SelectGameG*>(m_ActualGame)->SetAllGame(m_AllGame))
+		{
+			run = false;
+		}
 	}
-	std::cin >> choose;
-	if (choose != -1)
-	{
-		ChangeGame(m_AllGame[choose]->m_Name);
-	}
-	else
-		run = false;
 }
 
 void Application::ChangeGame(std::string gameName)
@@ -124,6 +122,9 @@ void Application::ChangeGame(std::string gameName)
 	{
 		if (g->m_Name == gameName)
 		{
+			if(m_ActualGame != nullptr)
+				m_ActualGame->EndGame();
+
 			m_ActualGame = g;
 			m_ActualGame->Initialize();
 		}

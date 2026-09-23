@@ -3,8 +3,7 @@
 #include <vector>
 
 #include "Lib2D/Window.h"
-#include "Lib2D/InputManager.h"
-#include "Distortion_engine/SceneManager.h"
+#include "Distortion_engine/InputManager.h"
 #include "Distortion_engine/Timer.h"
 #include "Distortion_engine/Game.h"
 
@@ -25,6 +24,8 @@ private:
 	int FramCount = 0;
 	Timer* m_FPSTimer;
 
+	std::string m_SelecteGame = "Select_Game";
+
 	bool run = false;
 
 	Application() {}
@@ -40,15 +41,15 @@ public:
 	void EndApplication();
 
 	template<typename T>
-	void AddGame(std::string gameName);
+	void AddGame(std::string gameName, std::string gameIconLink);
 	
 	void ChooseGame();
 	void ChangeGame(std::string gameName);
 };
 
 template<typename T>
-inline void Application::AddGame(std::string gameName)
+inline void Application::AddGame(std::string gameName, std::string gameIconLink)
 {
-	T* newGame = new T(gameName);
+	T* newGame = new T(gameName, gameIconLink);
 	m_AllGame.push_back(newGame);
 }

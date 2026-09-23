@@ -1,14 +1,15 @@
-#include <iostream>
 #include "main.h"
 #include "Application/Application.h"
 #include "Application/TestGame.h"
+#include "Application/ApplicationInfo.h"
 
 int main(int argc, char* argv[])
 {
 	Application* App = Application::Get();
 
 	bool* run = App->InitApplication();
-	App->AddGame<TestGame>("test");
+	App->AddGame<TestGame>("test",ApplicationInfo::GetTemplateLink());
+	App->AddGame<TestGame>("test2", "../../res/PlaceHolder2.png");
 	
 	while (*run)
 		App->RunApplication();

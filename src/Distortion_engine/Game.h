@@ -9,6 +9,7 @@ class Game
 {
 private:
 	std::string m_Name;
+	std::string m_GameIconLink;
 	bool m_IsInitialized = false;
 
 	void Initialize();
@@ -17,7 +18,7 @@ private:
 	void EndGame();
 
 protected:
-	Game(std::string gameName) : m_Name(gameName) {}
+	Game(std::string gameName, std::string gameIconLink) : m_Name(gameName), m_GameIconLink(gameIconLink) {}
 	bool IsRuning;
 
 	SceneManager* m_SceneManager;
@@ -28,4 +29,5 @@ protected:
 
 public:
 	friend class Application;
+	friend class SelectGameG;
 };
