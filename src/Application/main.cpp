@@ -1,18 +1,19 @@
-#include <iostream>
-#include <SDL.h>
-
 #include "main.h"
-#include "Lib2D/Window.h"
-#include "Lib2D/Sprite.h"
+#include "Application/Application.h"
+#include "Application/TestGame.h"
+#include "Application/ApplicationInfo.h"
 
 int main(int argc, char* argv[])
 {
-    std::cout << "Hello, World!\n";
-   Window* window = new Window();
-   window->OpenWindow();
-   Sprite* sprite = new Sprite("../../res/Lib2D/PlaceHolder.png");
-   sprite->SetTextureSize(200, 200);
-   while (true) { sprite->Draw(window); }
-   delete window;
-   return 0;
+	Application* App = Application::Get();
+
+	bool* run = App->InitApplication();
+	App->AddGame<TestGame>("test",ApplicationInfo::GetTemplateLink());
+	App->AddGame<TestGame>("test2", "../../res/PlaceHolder2.png");
+	
+	while (*run)
+		App->RunApplication();
+
+	App->EndApplication();
+	return 0;
 }

@@ -3,33 +3,31 @@
         "408C29CC-50AF-58D2-1BF6-0A147A8C145B": {
             "config-debug": {
                 "additionalDependencies": [
-                    "SDL2.lib",
-                    "SDL2main.lib",
-                    "SDL2_image.lib"
+                    "SDL3.lib",
+                    "SDL3_image.lib"
                 ],
                 "additionalIncludeDirectories": [
-                    "../../lib/SDL2/include",
-                    "../../lib/SDL2_image/include"
+                    "../../lib/SDL3/include",
+                    "../../lib/SDL3_image/include"
                 ],
                 "additionalLibraryDirectories": [
-                    "../../lib/SDL2/lib/x64",
-                    "../../lib/SDL2_image/lib/x64"
+                    "../../lib/SDL3/lib/x64",
+                    "../../lib/SDL3_image/lib/x64"
                 ],
                 "preprocessorDefinitions": []
             },
             "config-release": {
                 "additionalDependencies": [
-                    "SDL2.lib",
-                    "SDL2main.lib",
-                    "SDL2_image.lib"
+                    "SDL3.lib",
+                    "SDL3_image.lib"
                 ],
                 "additionalIncludeDirectories": [
-                    "../../lib/SDL2/include",
-                    "../../lib/SDL2_image/include"
+                    "../../lib/SDL3/include",
+                    "../../lib/SDL3_image/include"
                 ],
                 "additionalLibraryDirectories": [
-                    "../../lib/SDL2/lib/x64",
-                    "../../lib/SDL2_image/lib/x64"
+                    "../../lib/SDL3/lib/x64",
+                    "../../lib/SDL3_image/lib/x64"
                 ],
                 "preprocessorDefinitions": []
             },
@@ -44,33 +42,31 @@
         "5F2B0E19-2D1F-0A0B-4CFE-1FF518D0496B": {
             "config-debug": {
                 "additionalDependencies": [
-                    "SDL2.lib",
-                    "SDL2main.lib",
-                    "SDL2_image.lib"
+                    "SDL3.lib",
+                    "SDL3_image.lib"
                 ],
                 "additionalIncludeDirectories": [
-                    "../../lib/SDL2/include",
-                    "../../lib/SDL2_image/include"
+                    "../../lib/SDL3/include",
+                    "../../lib/SDL3_image/include"
                 ],
                 "additionalLibraryDirectories": [
-                    "../../lib/SDL2/lib/x64",
-                    "../../lib/SDL2_image/lib/x64"
+                    "../../lib/SDL3/lib/x64",
+                    "../../lib/SDL3_image/lib/x64"
                 ],
                 "preprocessorDefinitions": []
             },
             "config-release": {
                 "additionalDependencies": [
-                    "SDL2.lib",
-                    "SDL2main.lib",
-                    "SDL2_image.lib"
+                    "SDL3.lib",
+                    "SDL3_image.lib"
                 ],
                 "additionalIncludeDirectories": [
-                    "../../lib/SDL2/include",
-                    "../../lib/SDL2_image/include"
+                    "../../lib/SDL3/include",
+                    "../../lib/SDL3_image/include"
                 ],
                 "additionalLibraryDirectories": [
-                    "../../lib/SDL2/lib/x64",
-                    "../../lib/SDL2_image/lib/x64"
+                    "../../lib/SDL3/lib/x64",
+                    "../../lib/SDL3_image/lib/x64"
                 ],
                 "preprocessorDefinitions": []
             },
@@ -85,33 +81,31 @@
         "60302CFA-7BAD-69D4-644B-6B0F657436A5": {
             "config-debug": {
                 "additionalDependencies": [
-                    "SDL2.lib",
-                    "SDL2main.lib",
-                    "SDL2_image.lib"
+                    "SDL3.lib",
+                    "SDL3_image.lib"
                 ],
                 "additionalIncludeDirectories": [
-                    "../../lib/SDL2/include",
-                    "../../lib/SDL2_image/include"
+                    "../../lib/SDL3/include",
+                    "../../lib/SDL3_image/include"
                 ],
                 "additionalLibraryDirectories": [
-                    "../../lib/SDL2/lib/x64",
-                    "../../lib/SDL2_image/lib/x64"
+                    "../../lib/SDL3/lib/x64",
+                    "../../lib/SDL3_image/lib/x64"
                 ],
                 "preprocessorDefinitions": []
             },
             "config-release": {
                 "additionalDependencies": [
-                    "SDL2.lib",
-                    "SDL2main.lib",
-                    "SDL2_image.lib"
+                    "SDL3.lib",
+                    "SDL3_image.lib"
                 ],
                 "additionalIncludeDirectories": [
-                    "../../lib/SDL2/include",
-                    "../../lib/SDL2_image/include"
+                    "../../lib/SDL3/include",
+                    "../../lib/SDL3_image/include"
                 ],
                 "additionalLibraryDirectories": [
-                    "../../lib/SDL2/lib/x64",
-                    "../../lib/SDL2_image/lib/x64"
+                    "../../lib/SDL3/lib/x64",
+                    "../../lib/SDL3_image/lib/x64"
                 ],
                 "preprocessorDefinitions": []
             },
@@ -123,14 +117,9 @@
             "property-vcpkg": false,
             "property-window": false
         }
-    },
+    }, 
     "projects_name_to_guid": {
-        "Application": "60302CFA-7BAD-69D4-644B-6B0F657436A5",
-        "Distortion_engine": "408C29CC-50AF-58D2-1BF6-0A147A8C145B",
-        "Lib2D": "5F2B0E19-2D1F-0A0B-4CFE-1FF518D0496B"
-    },
-    "solution_guid": "5D035678-1BFA-7C7F-33C2-7FB4121C55E0",
-    "solution_name": "Distortion_engine",
-    "startup_project": "",
-    "version": "2.0"
-}
+    "Application": "60302CFA-7BAD-69D4-644B-6B0F657436A5",
+    "Distortion_engine": "408C29CC-50AF-58D2-1BF6-0A147A8C145B",
+    "Lib2D": "5F2B0E19-2D1F-0A0B-4CFE-1FF518D0496B"
+}, "solution_guid": "5D035678-1BFA-7C7F-33C2-7FB4121C55E0", "solution_name": "Distortion_engine", "startup_project": "", "version": "2.0" }

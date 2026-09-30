@@ -13,7 +13,7 @@ void Sprite::LoadTexture(const char* TexturePath)
 	}
 
 	if (m_Surface) {
-		SDL_FreeSurface(m_Surface);
+		SDL_DestroySurface(m_Surface);
 		m_Surface = nullptr;
 	}
 
@@ -23,7 +23,6 @@ void Sprite::LoadTexture(const char* TexturePath)
 		std::cout << "erreure de chargement de la surface" << std::endl;
 		exit(1);
 	}
-
 }
 
 void Sprite::Draw(Window* w)
@@ -31,14 +30,13 @@ void Sprite::Draw(Window* w)
 	if (m_Texture == nullptr)
 	{
 		m_Texture = SDL_CreateTextureFromSurface(w->m_Renderer, m_Surface);
-		SDL_FreeSurface(m_Surface); m_Surface = nullptr;
-		SDL_QueryTexture(m_Texture, NULL, NULL, &m_Width, &m_Height);
+		SDL_DestroySurface(m_Surface); m_Surface = nullptr;
+		//SDL_QueryTexture(m_Texture, NULL, NULL, &m_Width, &m_Height);
 	}
 
-	SDL_Rect dst = { Position->GetPosX(), Position->GetPosY(), m_Width,m_Height };
-	SDL_RenderCopy(w->m_Renderer, m_Texture, NULL, &dst);
-		std::cout << SDL_GetError();
-
+	SDL_FRect dst = { m_Position->x, m_Position->y, m_Width,m_Height };
+	SDL_RenderTexture(w->m_Renderer, m_Texture, NULL, &dst);
+	std::cout << SDL_GetError();
 }
 
 Sprite::~Sprite()
