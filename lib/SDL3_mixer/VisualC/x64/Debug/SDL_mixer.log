@@ -1,0 +1,93 @@
+﻿  Copying libxmp.dll
+          1 fichier(s) copié(s).
+  Copying libogg-0.dll
+          1 fichier(s) copié(s).
+  Copying libopus-0.dll
+          1 fichier(s) copié(s).
+  Copying libopusfile-0.dll
+          1 fichier(s) copié(s).
+  Copying libwavpack-1.dll
+          1 fichier(s) copié(s).
+  Copying LICENSE.xmp.txt
+          1 fichier(s) copié(s).
+  Copying LICENSE.ogg-vorbis.txt
+          1 fichier(s) copié(s).
+  Copying LICENSE.opus.txt
+          1 fichier(s) copié(s).
+  Copying LICENSE.opusfile.txt
+          1 fichier(s) copié(s).
+  Copying LICENSE.wavpack.txt
+          1 fichier(s) copié(s).
+  Copying libgme.dll
+          1 fichier(s) copié(s).
+  Copying LICENSE.gme.txt
+          1 fichier(s) copié(s).
+  decoder_aiff.c
+  decoder_au.c
+  decoder_drflac.c
+  decoder_drmp3.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  decoder_gme.c
+  (compiler le fichier source '../src/decoder_aiff.c')
+  
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_au.c')
+  
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_drflac.c')
+  
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_drmp3.c')
+  
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_gme.c')
+  
+  decoder_opus.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_opus.c')
+  
+  decoder_raw.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_raw.c')
+  
+  decoder_sinewave.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_sinewave.c')
+  
+  decoder_stb_vorbis.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_stb_vorbis.c')
+  
+  decoder_timidity.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_timidity.c')
+  
+  decoder_voc.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_voc.c')
+  
+  decoder_wav.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_wav.c')
+  
+  decoder_wavpack.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_wavpack.c')
+  
+  decoder_xmp.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/decoder_xmp.c')
+  
+  SDL_mixer.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/SDL_mixer.c')
+  
+  SDL_mixer_metadata_tags.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/SDL_mixer_metadata_tags.c')
+  
+  SDL_mixer_spatialization.c
+C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\src\SDL_mixer_internal.h(31,10): error C1083: Impossible d'ouvrir le fichier include : 'SDL3/SDL.h' : No such file or directory
+  (compiler le fichier source '../src/SDL_mixer_spatialization.c')
+  
+  Génération de code en cours...

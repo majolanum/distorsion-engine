@@ -1,0 +1,24 @@
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LIBXMP.DLL
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\libxmp.dll" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LIBOGG-0.DLL
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\libogg-0.dll" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LIBOPUS-0.DLL
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\libopus-0.dll" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LIBOPUSFILE-0.DLL
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\libopusfile-0.dll" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LIBWAVPACK-1.DLL
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\libwavpack-1.dll" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LICENSE.XMP.TXT
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\LICENSE.xmp.txt" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LICENSE.OGG-VORBIS.TXT
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\LICENSE.ogg-vorbis.txt" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LICENSE.OPUS.TXT
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\LICENSE.opus.txt" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LICENSE.OPUSFILE.TXT
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\LICENSE.opusfile.txt" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LICENSE.WAVPACK.TXT
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\LICENSE.wavpack.txt" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LIBGME.DLL
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\libgme.dll" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
+^C:\USERS\ARTHU\DOCUMENTS\GITHUB\DISTORSION-ENGINE\LIB\SDL3_MIXER\VISUALC\EXTERNAL\OPTIONAL\X64\LICENSE.GME.TXT
+copy "C:\Users\arthu\Documents\GitHub\distorsion-engine\lib\SDL3_mixer\VisualC\external\optional\x64\LICENSE.gme.txt" "C:\Users\arthu\Documents\GitHub\distorsion-engine\ide\\x64\Debug\"
