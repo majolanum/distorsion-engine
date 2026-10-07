@@ -22,6 +22,9 @@ public:
 	template<typename T>
 	T* GetActualScene();
 
+	template<typename T>
+	T* GetScene();
+
 	~SceneManager();
 
 	friend class Game;
@@ -36,8 +39,19 @@ inline void SceneManager::AddScene(std::string sceneName)
 
 template<typename T>
 inline T* SceneManager::GetActualScene()
-{	
+{
 	for (Scene* s : m_AllScene)
+	{
+		if (T* search = dynamic_cast<T*>(s))
+			return search;
+	}
+	return nullptr;
+}
+
+template<typename T>
+inline T* SceneManager::GetScene()
+{
+	for (Scene* s: m_AllScene)
 	{
 		if (T* search = dynamic_cast<T*>(s))
 			return search;

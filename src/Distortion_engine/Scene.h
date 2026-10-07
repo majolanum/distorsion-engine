@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Lib2D/Drawable.h"
+#include "Lib2D/Utils.h"
 #include "Entity.h"
 
 class Scene : public Drawable
@@ -28,10 +29,11 @@ protected:
 	virtual void OnEnd() {}
 
 	/// <summary>
-/// collider type : 0 = non, 1 = rect, 2 = circle
-/// </summary>
+	/// z axis : -1 = default -> after the last created entity
+	/// collider type : 0 = non, 1 = rect, 2 = circle
+	/// </summary>
 	template<typename T>
-	T* NewEntity(Vector2f* Position, int width, int height, std::string TexturPath,
+	T* NewEntity(Vector2f* Position, int width, int height, std::string TexturPath, int zAxis = -1,
 		bool canCollide = false, int colliderType = 0, bool haveRigBody = false);
 
 	template<typename T>
@@ -49,11 +51,14 @@ protected:
 };
 
 template<typename T>
-inline T* Scene::NewEntity(Vector2f* Position, int width, int height, std::string TexturPath
+inline T* Scene::NewEntity(Vector2f* Position, int width, int height, std::string TexturPath, int zAxis
 	, bool canCollide, int colliderType, bool haveRigBody)
 {
 	T* NewEntity = new T(Position, width, height, TexturPath, canCollide, colliderType, haveRigBody);
-	m_AllEntity.push_back(NewEntity);
+	if (zAxis != -1)
+		m_AllEntity.push_back(NewEntity);
+	else
+		m_AllEntity.emplace(zAxis, NewEntity);
 	return NewEntity;
 }
 
