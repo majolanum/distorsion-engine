@@ -11,8 +11,8 @@ class Window;
 class Sprite : public Transformable, public Drawable
 {
 protected:
-	int m_Width;
-	int m_Height;
+	float m_Width;
+	float m_Height;
 	SDL_Surface* m_Surface;
 	SDL_Texture* m_Texture;
 
@@ -24,12 +24,12 @@ public:
 	void SetTextureSize(int newWidth, int newHeight) { m_Width = newWidth; m_Height = newHeight; }
 	void Draw(Window*) override;
 
-	void GetSize(int* width, int* height) {
+/*	void GetSize(int* width, int* height) {
 		*width = m_Width; *height = m_Height;
-	};
+	};*/
 
-	int GetWidth() const { return m_Width; }
-	int GetHeight() const { return m_Height; }
+	float GetWidth() const { return m_Width; }
+	float GetHeight() const { return m_Height; }
 	~Sprite();
 
 	friend class Entity;

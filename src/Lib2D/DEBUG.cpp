@@ -7,12 +7,25 @@ void Debug::Draw(SDL_Renderer* renderer)
 	{
 		rect.Draw(renderer);
 	}
+	m_AllRect.clear();
+
+	for (Circle circle : m_AllCircle)
+	{
+		circle.Draw(renderer);
+	}
+	m_AllCircle.clear();
+
+	for (Line line : m_AllLine)
+	{
+		line.Draw(renderer);
+	}
+	m_AllLine.clear();
 }
 
 void Debug::DrawRect(Vector2f position, Vector2f size, Color color, bool filled)
 {
 	Rectangle rect;
-	rect.position = position - size/2.0f;
+	rect.position = position;
 	rect.size = size;
 	rect.color = color;
 	rect.filled = filled;

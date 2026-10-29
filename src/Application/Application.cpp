@@ -82,11 +82,11 @@ void Application::RunApplication()
 
 void Application::DrawApplication()
 {
-	if (m_ActualGame->IsRuning)
+	if (m_ActualGame!= nullptr)
 	{
 		m_ActualGame->DrawActualGame(m_MainWindow);
-		Debug::Draw(m_MainWindow->GetRenderer());
 	}
+		Debug::Draw(m_MainWindow->GetRenderer());
 }
 
 void Application::EndApplication()

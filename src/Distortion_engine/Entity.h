@@ -50,6 +50,8 @@ public:
 	void SetRigBody(bool newState) { HaveRigBody = newState; }
 
 	void SetPosition(Vector2f* Position) { m_Position = Position; }
+	Vector2f* GetPosition() const { return m_Position; }
+
 	void GoToPosition(Vector2f* Position, float speed = -1);
 
 	void GoToDirection(Vector2f* position, float speed = -1);

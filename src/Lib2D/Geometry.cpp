@@ -53,4 +53,5 @@ void Rectangle::Draw(SDL_Renderer* renderer)
 
 void Line::Draw(SDL_Renderer* renderer)
 {
+	SDL_RenderLine(renderer, pointA.x, pointA.y, pointB.x, pointB.y);
 }

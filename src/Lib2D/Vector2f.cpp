@@ -44,10 +44,10 @@ Vector2f Vector2f::operator/(float value) const
 
 Vector2f Vector2f::operator+(Vector2f other) const
 {
-	return { x + other.x,y + other.y };
+	return { x + other.x, y + other.y };
 }
 
 Vector2f Vector2f::operator-(Vector2f other) const
 {
-	return{ x - other.x,y - other.y };
+	return{ x - other.x, y - other.y };
 }

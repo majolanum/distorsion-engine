@@ -57,11 +57,11 @@ inline T* Scene::NewEntity(Vector2f* position, int width, int height, std::strin
 {
 	T* NewEntity = new T(position, width, height, TexturPath);
 
-	if (zAxis != -1)
+	if (zAxis == -1)
 		m_AllEntity.push_back(NewEntity);
-	else
-		m_AllEntity.emplace(zAxis, NewEntity);
-
+	else	
+		m_AllEntity.emplace(m_AllEntity.begin()+ zAxis, NewEntity);
+	
 	return NewEntity;
 }
 

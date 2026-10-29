@@ -6,7 +6,6 @@ using namespace std;
 
 struct Color
 {
-
 	uint8_t r = 255.f;
 	uint8_t g = 255.f;
 	uint8_t b = 255.f;
