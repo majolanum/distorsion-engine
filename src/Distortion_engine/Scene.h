@@ -28,11 +28,12 @@ protected:
 	virtual void OnEnd() {}
 
 	/// <summary>
-/// collider type : 0 = non, 1 = rect, 2 = circle
-/// </summary>
+	/// Creat a new Engine entity 
+	/// </summary>
+	/// <param name="zAxis">tell in wich order draw the entity, default -1 : after the last created entity</param>
+	/// <returns></returns>
 	template<typename T>
-	T* NewEntity(Vector2f* Position, int width, int height, std::string TexturPath,
-		bool canCollide = false, int colliderType = 0, bool haveRigBody = false);
+	T* NewEntity(Vector2f* position, int width, int height, std::string TexturPath, int zAxis =-1);
 
 	template<typename T>
 	T* GetEntity();
@@ -40,6 +41,9 @@ protected:
 	template<typename T>
 	std::vector<T*> GetAllEntity();
 
+	/// <summary>
+	/// Tell if the mouse is insinde the entity 
+	/// </summary>
 	bool IsInside(Entity* entity);
 	void RemoveEntity(Entity* entityToRemove, std::vector<Entity*>vector);
 
@@ -49,11 +53,15 @@ protected:
 };
 
 template<typename T>
-inline T* Scene::NewEntity(Vector2f* Position, int width, int height, std::string TexturPath
-	, bool canCollide, int colliderType, bool haveRigBody)
+inline T* Scene::NewEntity(Vector2f* position, int width, int height, std::string TexturPath, int zAxis)
 {
-	T* NewEntity = new T(Position, width, height, TexturPath, canCollide, colliderType, haveRigBody);
-	m_AllEntity.push_back(NewEntity);
+	T* NewEntity = new T(position, width, height, TexturPath);
+
+	if (zAxis != -1)
+		m_AllEntity.push_back(NewEntity);
+	else
+		m_AllEntity.emplace(zAxis, NewEntity);
+
 	return NewEntity;
 }
 

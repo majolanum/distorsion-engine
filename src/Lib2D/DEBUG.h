@@ -1,23 +1,28 @@
 #pragma once
-#include "Window.h"
-#define DEFAULTE_PRECISION 30
-#include "SDL3/SDL_pixels.h"
-#include "Lib2D/Color.h"
+#include <vector> 
 
-class DEBUG
+#include "Geometry.h"
+#include "Color.h"
+
+class Debug
 {
 private:
-	Window* m_window;
-	static DEBUG* instance;
-
-
+	inline static std::vector<Line> m_AllLine;
+	inline static std::vector < Rectangle > m_AllRect;
+	inline static std::vector<Circle> m_AllCircle;
+	
+	static void Draw(SDL_Renderer* renderer);
+	
 public:
-	void SetWindow(Window* window) { m_window = window; }
-	static DEBUG* Get();
-	void DrawRect(float posX, float posY, float width, float height, SDL_Color color);
-	void DrawRect(SDL_FRect rect, SDL_Color color);
+	/// <summary>
+	/// 
+	/// </summary>	
+	/// <param name="size">x = width, y = height</param>	
+	static void DrawRect(Vector2f position, Vector2f size, Color color,bool filled);
+	static void DrawLine(Vector2f pointA, Vector2f pointB, Color color);
+	static void DrawCircle(Vector2f center, int radius, Color color );
 
-	void DrawCircle(int radius, float posX, float posY,SDL_Color Color ,int precision = DEFAULTE_PRECISION);
+	friend class Application;
 };
 
 

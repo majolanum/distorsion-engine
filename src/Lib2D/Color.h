@@ -1,14 +1,25 @@
 #pragma once
-#include "SDL3/SDL_pixels.h"
+
+#include <cstdint>
+
+using namespace std;
 
 struct Color
 {
-	SDL_Color static Black;
-	SDL_Color static White;
-	SDL_Color static Red;
-	SDL_Color static Blue;
-	SDL_Color static Green;
-	SDL_Color static Purple;
-	SDL_Color static Yellow;
-	SDL_Color static Orange;
+
+	uint8_t r = 255.f;
+	uint8_t g = 255.f;
+	uint8_t b = 255.f;
+	uint8_t a = 255.f;
+
+	Color(uint8_t red, uint8_t blue, uint8_t green, uint8_t alpha = 255);
+
+	 static const Color Black;
+	 static const Color White;
+	 static const Color Red;
+	 static const Color Blue;
+	 static const Color Green;
+	 static const Color Purple;
+	 static const Color Yellow;
+	 static const Color Orange;
 };

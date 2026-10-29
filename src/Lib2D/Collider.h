@@ -11,8 +11,8 @@ private:
 	/// <summary>
 	/// type 1 : rect, type 2 : circle
 	/// </summary>
-	int ColliderType;
-	int Radius;
+	int m_ColliderType;
+	int m_Radius;
 
 	bool IsCollide(Collider* otherCollider);
 	bool RectCollide(SDL_Rect otherPosition);
@@ -20,7 +20,8 @@ private:
 	bool CircleCollide(SDL_Rect otherPosition, int otherRadius);
 
 protected:
-	Collider(int colliderType) :ColliderType(colliderType) {}
+	Collider(int colliderType) :m_ColliderType(colliderType) {}
+	void SetColliderType(int newColliderType) { m_ColliderType = newColliderType; }
 	void UpdateCollider(Vector2f* OwnerPosition, int Width, int Height);
 
 	friend class Scene;

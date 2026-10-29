@@ -1,12 +1,9 @@
 #include <iostream>
 #include "Entity.h"
 
-Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath,
-	bool canCollide, int colliderType, bool haveRigBody) :
-	Sprite(TexturPath, Position->x, Position->y), Collider(colliderType)
-{
-	HaveRigBody = haveRigBody;
-	CanCollide = canCollide;
+Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath) :
+	Sprite(TexturPath, Position->x, Position->y), Collider(0)
+{	
 	if (!TexturPath.empty())
 		SetTextureSize(width, height);
 }

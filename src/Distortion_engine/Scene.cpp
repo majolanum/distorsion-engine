@@ -9,6 +9,7 @@ Scene::Scene(std::string sceneName) : m_SceneName(sceneName)
 
 void Scene::Update(float DeltaTime)
 {
+	//Update
 	for (Entity* e : m_AllEntity)
 	{
 		e->Update(DeltaTime);
@@ -20,8 +21,10 @@ void Scene::Update(float DeltaTime)
 		}
 	}
 
+	//Collide
 	DoCollide();
 
+	//Destroy
 	for (Entity* e : m_EntityToDestroy)
 	{
 		e->OnDestroy();
@@ -32,28 +35,34 @@ void Scene::Update(float DeltaTime)
 
 void Scene::DoCollide()
 {
-	for (Entity* entity : m_AllEntity)
+	for (auto it1 = m_AllEntity.begin(); it1 != m_AllEntity.end(); it1++)
 	{
-		for (Entity* otherEntity : m_AllEntity)
-		{
-			if (entity != otherEntity)
-			{
-				if (entity->CanCollide && otherEntity->CanCollide)
-				{
-					if (entity->IsCollide(otherEntity))
-					{
-						entity->OnCollide(otherEntity);
-						otherEntity->OnCollide(entity);
+		auto it2 = it1;
+		it2++;
 
-						if (entity->HaveRigBody && otherEntity->HaveRigBody)
-						{
-							//TODO : faire le repusle
-							entity->Repulse();
-							otherEntity->Repulse();
-						}
-					}
-				}
+		for (;it2 != m_AllEntity.end();it2++)
+		{
+			Entity* entity = *it1;
+			Entity* otherEntity = *it2;
+
+			if (entity->ToDestroy || otherEntity->ToDestroy)
+				continue;
+
+			if (entity->CanCollide == false || otherEntity->CanCollide == false)
+				continue;
+
+			if (entity->IsCollide(otherEntity) == false)
+				continue;
+
+			if (entity->HaveRigBody && otherEntity->HaveRigBody)
+			{
+				//TODO : faire le repusle
+				entity->Repulse();
+				otherEntity->Repulse();
 			}
+
+			entity->OnCollide(otherEntity);
+			otherEntity->OnCollide(entity);
 		}
 	}
 }

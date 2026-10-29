@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ApplicationInfo.h"
 #include "SelectGameG.h"
+#include "Lib2d/Debug.h"
 
 Application* Application::instance = nullptr;
 
@@ -52,8 +53,7 @@ void Application::RunApplication()
 			m_ActualGame->EndGame();
 			m_ActualGame = nullptr;
 		}
-		else
-			m_ActualGame->DrawActualGame(m_MainWindow);
+		DrawApplication();
 	}
 	else
 		ChooseGame();
@@ -78,6 +78,15 @@ void Application::RunApplication()
 		FramCount = 0;
 	}
 	FramCount++;
+}
+
+void Application::DrawApplication()
+{
+	if (m_ActualGame->IsRuning)
+	{
+		m_ActualGame->DrawActualGame(m_MainWindow);
+		Debug::Draw(m_MainWindow->GetRenderer());
+	}
 }
 
 void Application::EndApplication()

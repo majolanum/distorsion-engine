@@ -11,15 +11,14 @@ class Entity : public Sprite, public Collider
 		Vector2f* TargetPosition = nullptr;
 		Vector2f* TargetDirection = nullptr;
 		bool IsSet = false;
-	};
-	Target m_Target;
+	} m_Target;
 
 private:
 	int m_Speed = 0;
 	int m_Index = 0;
 	bool ToDestroy = false;
-	bool CanCollide;
-	bool HaveRigBody;
+	bool CanCollide = false;
+	bool HaveRigBody = false;
 
 	void Move(float deltaTime);
 	void Update(float deltaTime);
@@ -28,7 +27,7 @@ private:
 	void Repulse();
 
 protected:
-	Entity(Vector2f* Position, int width, int height, std::string TexturPath, bool canCollide, int colliderType, bool haveRigBody);
+	Entity(Vector2f* Position, int width, int height, std::string TexturPath);
 
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
@@ -37,11 +36,19 @@ protected:
 
 	void SetIndex(int index) { m_Index = index; }
 	int GetIndex() const { return m_Index; }
+public:
 
-	void SetCollider(bool newState) { CanCollide = newState; }
+	/// <summary>
+	/// Set if the entity can collide with other entity
+	/// </summary>
+	///<param name = "newType"> collider type : 0 = non, 1 = rect, 2 = circle</param>
+	void SetCollider(bool newState, int newType) { CanCollide = newState; SetColliderType(newType); }
+
+	/// <summary>
+	/// Set if the entity push the other entity when collide with him
+	/// </summary>
 	void SetRigBody(bool newState) { HaveRigBody = newState; }
 
-public:
 	void SetPosition(Vector2f* Position) { m_Position = Position; }
 	void GoToPosition(Vector2f* Position, float speed = -1);
 

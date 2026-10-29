@@ -4,22 +4,22 @@
 void Collider::UpdateCollider(Vector2f* OwnerPosition, int Width, int Height)
 {
 	m_ColliderPosition = { (int)OwnerPosition->x, (int)OwnerPosition->y,Width,Height };
-	if (ColliderType == 2)
+	if (m_ColliderType == 2)
 	{
 		if (Width < Height)
-			Radius = Height;
+			m_Radius = Height;
 		else
-			Radius = Width;
+			m_Radius = Width;
 	}
 }
 
 bool Collider::IsCollide(Collider* otherCollider)
 {
-	switch (ColliderType)
+	switch (m_ColliderType)
 	{
 	case 1:
 	{
-		switch (otherCollider->ColliderType)
+		switch (otherCollider->m_ColliderType)
 		{
 		case 1:
 		{
@@ -36,7 +36,7 @@ bool Collider::IsCollide(Collider* otherCollider)
 	}
 	case 2:
 	{
-		switch (otherCollider->ColliderType)
+		switch (otherCollider->m_ColliderType)
 		{
 		case 1:
 		{
@@ -45,7 +45,7 @@ bool Collider::IsCollide(Collider* otherCollider)
 		}
 		case 2:
 		{
-			return CircleCollide(otherCollider->m_ColliderPosition,otherCollider->Radius);
+			return CircleCollide(otherCollider->m_ColliderPosition,otherCollider->m_Radius);
 			break;
 		}
 		}
@@ -73,7 +73,7 @@ bool Collider::CircleRectCollide(SDL_Rect otherPosition)
 bool Collider::CircleCollide(SDL_Rect otherPosition, int otherRadius)
 {
 	float distance = m_OwnerPosition->GetDistance(new Vector2f(otherPosition.x, otherPosition.y));
-	if (distance < Radius + otherRadius)
+	if (distance < m_Radius + otherRadius)
 		return true;
 	else
 		return false;

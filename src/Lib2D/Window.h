@@ -25,11 +25,12 @@ public:
 	void Draw(Drawable* d);
 	void Present() { SDL_RenderPresent(m_Renderer); };
 
-	bool IsWindowOpen() { return isWindowOpen; }
+	
+	SDL_Renderer* GetRenderer() const { return m_Renderer; }
+	bool IsWindowOpen() const { return isWindowOpen; }
 
 	~Window();
 	friend class Sprite;
-	friend class AssetManager;
-	friend class DEBUG;
+	friend class AssetManager;	
 };
 

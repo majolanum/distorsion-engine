@@ -38,6 +38,7 @@ public:
 
 	bool* InitApplication();
 	void RunApplication();
+	void DrawApplication();
 	void EndApplication();
 
 	template<typename T>
