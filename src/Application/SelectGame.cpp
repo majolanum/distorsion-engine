@@ -1,8 +1,8 @@
-#include "SelectGameG.h"
+#include "SelectGame.h"
 #include "Application.h"
 #include <map>
 
-void SelectGameG::OnInitialize()
+void SelectGame::OnInitialize()
 {
 	m_SceneManager->AddScene<SelecteGameScene>("Select_game");
 	m_SceneManager->ChangeSceneTo("Select_game");
@@ -11,7 +11,7 @@ void SelectGameG::OnInitialize()
 	m_AllGame.clear();
 }
 
-void SelectGameG::OnUpdate()
+void SelectGame::OnUpdate()
 {
 	if (m_SceneManager->SceneFinished())
 	{
@@ -20,7 +20,7 @@ void SelectGameG::OnUpdate()
 	}
 }
 
-bool SelectGameG::SetAllGame(std::vector<Game*> allGame)
+bool SelectGame::SetAllGame(std::vector<Game*> allGame)
 {
 	std::map<std::string, std::string> gameList;
 	

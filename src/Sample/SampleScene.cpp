@@ -1,11 +1,11 @@
-#include "TestScene.h"
-#include "ApplicationInfo.h"
+#include "SampleScene.h"
+#include "Application/ApplicationInfo.h"
 #include "Lib2d/Debug.h"
 
-void TestScene::OnInitialize()
+void SampleScene::OnInitialize()
 {
-	Entity1 = NewEntity<TestEntity>(new Vector2f(50, 50), 50, 50, ApplicationInfo::GetTemplateLink());
-	Entity2 = NewEntity<TestEntity>(new Vector2f(200, 200), 50, 50, ApplicationInfo::GetTemplateLink());
+	Entity1 = NewEntity<SampleEntity>(new Vector2f(50, 50), 50, 50, ApplicationInfo::GetTemplateLink());
+	Entity2 = NewEntity<SampleEntity>(new Vector2f(200, 200), 50, 50, ApplicationInfo::GetTemplateLink());
 
 	Entity1->SetCollider(true,1);
 	Entity2->SetCollider(true, 1);
@@ -13,7 +13,7 @@ void TestScene::OnInitialize()
 	Entity1->GoToPosition(new Vector2f(200, 200), 10);
 }
 
-void TestScene::OnUpdate()
+void SampleScene::OnUpdate()
 {
 	if (Entity1->EndScene)
 	{

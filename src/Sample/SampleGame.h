@@ -1,8 +1,8 @@
 #pragma once
 #include "Distortion_engine\Game.h"
-#include "TestScene.h"
+#include "SampleScene.h"
 
-class TestGame : public Game
+class SampleGame : public Game
 {
 public:
 	using Game::Game;

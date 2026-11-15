@@ -1,7 +1,7 @@
 #pragma once
-#include <Entity.h>
+#include "Distortion_Engine/Entity.h"
 
-class TestEntity : public Entity
+class SampleEntity : public Entity
 {
 public:
 	using Entity::Entity;

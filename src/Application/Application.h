@@ -18,17 +18,17 @@ private:
 	SDL_Event event;
 
 	std::vector<Game*> m_AllGame;
-	Game* m_ActualGame;
+	Game* m_ActualGame = nullptr;
 
 	float DeltaTime = 0, TotalElapsed = 0;
 	int FramCount = 0;
-	Timer* m_FPSTimer;
+	Timer* m_FPSTimer = nullptr;
 
 	std::string m_SelecteGame = "Select_Game";
 
 	bool run = false;
 
-	Application() {}
+	Application() = default;
 	static Application* instance;
 
 	void GetEvent();

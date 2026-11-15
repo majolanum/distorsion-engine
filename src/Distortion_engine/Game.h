@@ -19,9 +19,9 @@ private:
 
 protected:
 	Game(std::string gameName, std::string gameIconLink) : m_Name(gameName), m_GameIconLink(gameIconLink) {}
-	bool IsRuning;
+	bool IsRuning = true;
+	SceneManager* m_SceneManager = nullptr;
 
-	SceneManager* m_SceneManager;
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
 
@@ -29,5 +29,5 @@ protected:
 
 public:
 	friend class Application;
-	friend class SelectGameG;
+	friend class SelectGame;
 };

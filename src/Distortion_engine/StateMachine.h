@@ -4,9 +4,9 @@
 template<typename T>
 class State
 {
-	virtual OnEnter(T* owner, State* preState) = 0;
-	virtual OnUpdate(T* owner) = 0;
-	virtual OnExit(T* owner, State* nextState) = 0;
+	virtual void OnEnter(T* owner, State* preState) = 0;
+	virtual void OnUpdate(T* owner) = 0;
+	virtual void OnExit(T* owner, State* nextState) = 0;
 };
 
 template<typename T>

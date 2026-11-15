@@ -2,7 +2,7 @@
 #include "Distortion_engine\Game.h"
 #include "SelecteGameScene.h"
 
-class SelectGameG : public Game
+class SelectGame : public Game
 {
 private:
 	SelecteGameScene* m_SelectGameScene;

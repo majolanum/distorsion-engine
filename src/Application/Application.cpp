@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "ApplicationInfo.h"
-#include "SelectGameG.h"
+#include "SelectGame.h"
 #include "Lib2d/Debug.h"
 
 Application* Application::instance = nullptr;
@@ -24,7 +24,7 @@ bool* Application::InitApplication()
 	m_FPSTimer = new Timer();
 	run = true;
 
-	AddGame<SelectGameG>(m_SelecteGame, ApplicationInfo::GetTemplateLink());
+	AddGame<SelectGame>(m_SelecteGame, ApplicationInfo::GetTemplateLink());
 
 	return &run;
 }
@@ -113,7 +113,7 @@ void Application::ChooseGame()
 	if (m_ActualGame == nullptr)
 	{
 		ChangeGame(m_SelecteGame);
-		if (!dynamic_cast<SelectGameG*>(m_ActualGame)->SetAllGame(m_AllGame))
+		if (!dynamic_cast<SelectGame*>(m_ActualGame)->SetAllGame(m_AllGame))
 		{
 			run = false;
 		}

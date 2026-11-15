@@ -2,10 +2,10 @@
 #include <iostream>
 
 
-float Vector2f::GetDistance(Vector2f* other)
+float Vector2f::GetDistance(Vector2f other)
 {
-	int dx = x - other->x;
-	int dy = y - other->y;
+	int dx = x - other.x;
+	int dy = y - other.y;
 	float distance = sqrt(dx * dx + dy * dy);
 	return distance;
 }

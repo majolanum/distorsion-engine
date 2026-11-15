@@ -72,7 +72,7 @@ bool Collider::CircleRectCollide(SDL_Rect otherPosition)
 
 bool Collider::CircleCollide(SDL_Rect otherPosition, int otherRadius)
 {
-	float distance = m_OwnerPosition->GetDistance(new Vector2f(otherPosition.x, otherPosition.y));
+	float distance = m_OwnerPosition->GetDistance({ otherPosition.x, otherPosition.y });
 	if (distance < m_Radius + otherRadius)
 		return true;
 	else

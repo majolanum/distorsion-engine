@@ -10,7 +10,7 @@ public:
 		x = _x; y = _y;
 	}
 
-	float GetDistance(Vector2f* other);
+	float GetDistance(Vector2f other);
 	Vector2f* Normalize();
 
 	Vector2f operator+ (float value) const;

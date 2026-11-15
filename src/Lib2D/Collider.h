@@ -5,14 +5,14 @@
 class Collider
 {
 private:
-	Vector2f* m_OwnerPosition;
+	Vector2f m_OwnerPosition;
 	SDL_Rect m_ColliderPosition;
 
 	/// <summary>
 	/// type 1 : rect, type 2 : circle
 	/// </summary>
-	int m_ColliderType;
-	int m_Radius;
+	int m_ColliderType = 0;
+	int m_Radius = 0;
 
 	bool IsCollide(Collider* otherCollider);
 	bool RectCollide(SDL_Rect otherPosition);
