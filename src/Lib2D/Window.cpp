@@ -26,9 +26,9 @@ Vector2f* Window::OpenWindow(const char* windowName, float Width, float Height)
 		std::cout << "code de l erreur :" << SDL_GetError() << std::endl;
 		exit(1);
 	}
+
 	isWindowOpen = true;
 	return new Vector2f(Width, Height);
-
 }
 
 void Window::ClearWindow()
@@ -47,7 +47,10 @@ Window::~Window()
 {
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_DestroyWindow(m_MainWindow);
+
 	m_Renderer = nullptr;
 	m_MainWindow = nullptr;
 	isWindowOpen = false;
+
+	SDL_Quit();
 }

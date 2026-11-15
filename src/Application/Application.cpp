@@ -14,24 +14,18 @@ Application* Application::Get()
 
 bool* Application::InitApplication()
 {
-	try
-	{
-		m_MainWindow = new Window();
-		ApplicationInfo::SetWindowSize(m_MainWindow->OpenWindow());
+	m_MainWindow = new Window();
+	ApplicationInfo::SetWindowSize(m_MainWindow->OpenWindow());
 
-		m_ImputeManager = InputManager::Get();
+	m_ImputeManager = InputManager::Get();
 
-		m_ActualGame = nullptr;
+	m_ActualGame = nullptr;
 
-		m_FPSTimer = new Timer();
-		run = true;
+	m_FPSTimer = new Timer();
+	run = true;
 
-		AddGame<SelectGameG>(m_SelecteGame, ApplicationInfo::GetTemplateLink());
-	}
-	catch (std::exception ex)
-	{
-		run = false;
-	}
+	AddGame<SelectGameG>(m_SelecteGame, ApplicationInfo::GetTemplateLink());
+
 	return &run;
 }
 
@@ -82,11 +76,11 @@ void Application::RunApplication()
 
 void Application::DrawApplication()
 {
-	if (m_ActualGame!= nullptr)
+	if (m_ActualGame != nullptr)
 	{
 		m_ActualGame->DrawActualGame(m_MainWindow);
 	}
-		Debug::Draw(m_MainWindow->GetRenderer());
+	Debug::Draw(m_MainWindow->GetRenderer());
 }
 
 void Application::EndApplication()
@@ -96,6 +90,7 @@ void Application::EndApplication()
 		delete g;
 	}
 	m_AllGame.clear();
+	delete m_MainWindow;
 }
 
 void Application::GetEvent()
@@ -131,7 +126,7 @@ void Application::ChangeGame(std::string gameName)
 	{
 		if (g->m_Name == gameName)
 		{
-			if(m_ActualGame != nullptr)
+			if (m_ActualGame != nullptr)
 				m_ActualGame->EndGame();
 
 			m_ActualGame = g;
