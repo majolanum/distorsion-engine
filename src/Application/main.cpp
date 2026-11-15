@@ -2,6 +2,7 @@
 #include "Application/Application.h"
 #include "Application/TestGame.h"
 #include "Application/ApplicationInfo.h"
+#include "Distortion_Engine/Utils.h"
 
 int main(int argc, char* argv[])
 {
@@ -9,7 +10,8 @@ int main(int argc, char* argv[])
 	bool* run = App->InitApplication();
 	App->AddGame<TestGame>("test",ApplicationInfo::GetTemplateLink());
 	App->AddGame<TestGame>("test2", "../../res/PlaceHolder2.png");
-	
+
+
 	while (*run)
 		App->RunApplication();
 

@@ -14,7 +14,8 @@ public:
 	static float GetDeltaTime() { return m_DeltaTime; }
 	static float GetWindowWidth() { return m_WindowWidth; }
 	static float GetWindowHeight() { return m_WindowHeight; }
-	static std::string GetTemplateLink() { return ("../../res/Lib2D/PlaceHolder.png"); }
+	
+	static const std::string GetTemplateLink() { return "../../res/Lib2D/PlaceHolder.png"; }
 
 	friend class Application;
 };
