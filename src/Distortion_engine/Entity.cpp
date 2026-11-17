@@ -1,14 +1,7 @@
 #include <iostream>
 #include "Entity.h"
 
-Entity::Entity(Vector2f* Position, int width, int height, std::string TexturPath) :
-	Sprite(TexturPath, Position->x, Position->y), Collider(0)
-{	
-	if (!TexturPath.empty())
-		SetTextureSize(width, height);
-}
-
-void Entity::GoToDirection(Vector2f* position, float speed)
+void Entity::GoToDirection(Vector2f position, float speed)
 {
 	m_Target.IsSet = false;
 	if (speed != -1)
@@ -21,8 +14,8 @@ bool Entity::IsAtTarget()
 {
 	if (m_Target.IsSet)
 	{
-		float distanceToTargetX = m_Target.TargetPosition->x - m_Position->x;
-		float distanceToTargetY = m_Target.TargetPosition->y - m_Position->y;
+		float distanceToTargetX = m_Target.TargetPosition.x - m_Position.x;
+		float distanceToTargetY = m_Target.TargetPosition.y - m_Position.y;
 
 		if (distanceToTargetX < 0.2f || distanceToTargetY < 0.2f)
 		{
@@ -40,7 +33,29 @@ void Entity::Repulse()
 
 }
 
-void Entity::GoToPosition(Vector2f* position, float speed)
+void Entity::SetCollider(bool newState, int newType)
+{
+	CanCollide = newState;
+	m_ColliderType = newType;
+
+	if (m_ColliderType == 2)
+	{
+		if (m_Width < m_Height)
+			m_Radius = m_Height;
+		else
+			m_Radius = m_Width;
+	}
+}
+
+Vector2f Entity::GetPosition(float anchorX, float anchorY)
+{
+	Vector2f pos;
+	pos.x = m_Position.x + m_Width * anchorX;
+	pos.y = m_Position.y + m_Height* anchorX;
+	return pos;
+}
+
+void Entity::GoToPosition(Vector2f position, float speed)
 {
 	m_Target.IsSet = false;
 	if (speed != -1)
@@ -48,11 +63,11 @@ void Entity::GoToPosition(Vector2f* position, float speed)
 		m_Speed = speed;
 		m_Target.TargetPosition = position;
 
-		float targetDirectionX = m_Target.TargetPosition->x - m_Position->x;
-		float targetDirectionY = m_Target.TargetPosition->y - m_Position->y;
+		float targetDirectionX = m_Target.TargetPosition.x - m_Position.x;
+		float targetDirectionY = m_Target.TargetPosition.y - m_Position.y;
 
-		m_Target.TargetDirection = new Vector2f(targetDirectionX, targetDirectionY);
-		m_Target.TargetDirection->Normalize();
+		m_Target.TargetDirection = { targetDirectionX, targetDirectionY };
+		m_Target.TargetDirection.Normalize();
 
 		if (IsAtTarget())
 		{
@@ -74,10 +89,11 @@ void Entity::Move(float deltaTime)
 	if (m_Target.IsSet)
 	{
 		float distance = deltaTime * m_Speed;
-		Vector2f* translation = (new Vector2f(distance * m_Target.TargetDirection->x, distance * m_Target.TargetDirection->y))->Normalize();
+		Vector2f translation = { distance * m_Target.TargetDirection.x, distance * m_Target.TargetDirection.y
+		};translation.Normalize();
 
-		m_Position->x += translation->x;
-		m_Position->y += translation->y;
+		m_Position += translation;
+		
 	}
 }
 

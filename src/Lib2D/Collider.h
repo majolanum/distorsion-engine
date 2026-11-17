@@ -5,24 +5,24 @@
 class Collider
 {
 private:
-	Vector2f m_OwnerPosition;
-	SDL_Rect m_ColliderPosition;
+	Vector2f m_OwnerPosition = {};
+	SDL_FRect m_ColliderPosition = {};
+	bool IsCollide(Collider* otherCollider) const;
+	bool RectCollide(SDL_FRect otherPosition) const;
+	bool CircleRectCollide(SDL_FRect otherPosition) const;
+	bool CircleCollide(Vector2f otherPosition, int otherRadius) const;
 
+protected:
 	/// <summary>
 	/// type 1 : rect, type 2 : circle
 	/// </summary>
 	int m_ColliderType = 0;
-	int m_Radius = 0;
-
-	bool IsCollide(Collider* otherCollider);
-	bool RectCollide(SDL_Rect otherPosition);
-	bool CircleRectCollide(SDL_Rect otherPosition);
-	bool CircleCollide(SDL_Rect otherPosition, int otherRadius);
+	float m_Radius = 0;
 
 protected:
-	Collider(int colliderType) :m_ColliderType(colliderType) {}
-	void SetColliderType(int newColliderType) { m_ColliderType = newColliderType; }
-	void UpdateCollider(Vector2f* OwnerPosition, int Width, int Height);
+
+	Collider() = default;
+	void UpdateCollider(Vector2f OwnerPosition, float Width, float Height);
 
 	friend class Scene;
 };

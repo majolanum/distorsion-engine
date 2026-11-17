@@ -60,7 +60,7 @@ private:
 	std::unordered_map<SDL_Keycode, KeyState> m_KeysState;
 	std::unordered_map<Mouse, KeyState> m_MouseState;
 
-	Vector2f* MousePos = new Vector2f(0,0);
+	Vector2f MousePos = { 0,0 };
 
 public:
 	static InputManager* Get();
@@ -77,6 +77,6 @@ public:
 	bool IsKeyRelease(Mouse key) { return m_MouseState[key].isRelease; }
 	bool IsKeyHeld(Mouse key) { return m_MouseState[key].isHeld; }
 
-	Vector2f* GetMousePosition() { return MousePos; }
+	Vector2f GetMousePosition() { return MousePos; }
 };
 

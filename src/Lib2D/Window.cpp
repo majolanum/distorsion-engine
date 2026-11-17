@@ -3,7 +3,7 @@
 #include <SDL3/SDL_init.h>
 #include "Drawable.h"
 
-Vector2f* Window::OpenWindow(const char* windowName, float Width, float Height)
+Vector2f Window::OpenWindow(const char* windowName, float Width, float Height)
 {
 	if (!SDL_Init(SDL_INIT_VIDEO))
 	{
@@ -28,7 +28,7 @@ Vector2f* Window::OpenWindow(const char* windowName, float Width, float Height)
 	}
 
 	isWindowOpen = true;
-	return new Vector2f(Width, Height);
+	return { Width, Height };
 }
 
 void Window::ClearWindow()

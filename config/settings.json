@@ -43,9 +43,18 @@
         },
         "5E4C280C-0393-1AD8-1AEB-3EBD46177ACA": {
             "config-debug": {
-                "additionalDependencies": [],
-                "additionalIncludeDirectories": [],
-                "additionalLibraryDirectories": [],
+                "additionalDependencies": [
+                    "SDL3.lib",
+                    "SDL3_image.lib"
+                ],
+                "additionalIncludeDirectories": [
+                    "../../lib/SDL3/include",
+                    "../../lib/SDL3_image/include"
+                ],
+                "additionalLibraryDirectories": [
+                    "../../lib/SDL3/lib/x64",
+                    "../../lib/SDL3_image/lib/x64"
+                ],
                 "preprocessorDefinitions": []
             },
             "config-release": {
@@ -55,7 +64,9 @@
                 "preprocessorDefinitions": []
             },
             "dependencies": [],
-            "dependents": [],
+            "dependents": [
+                "60302CFA-7BAD-69D4-644B-6B0F657436A5"
+            ],
             "name": "Sample",
             "property-lib": true,
             "property-pch": false,
@@ -133,7 +144,8 @@
                 "preprocessorDefinitions": []
             },
             "dependencies": [
-                "408C29CC-50AF-58D2-1BF6-0A147A8C145B"
+                "408C29CC-50AF-58D2-1BF6-0A147A8C145B",
+                "5E4C280C-0393-1AD8-1AEB-3EBD46177ACA"
             ],
             "dependents": [],
             "name": "Application",

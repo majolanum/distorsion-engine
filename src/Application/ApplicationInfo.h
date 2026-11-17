@@ -8,7 +8,7 @@ private:
 	static inline float m_DeltaTime = 0.0f;
 	static inline float m_WindowWidth = 0, m_WindowHeight = 0;
 	static void SetDeltaTime(float deltaTime) { m_DeltaTime = deltaTime; }
-	static void SetWindowSize(Vector2f* windowSize);
+	static void SetWindowSize(Vector2f windowSize);
 
 public:
 	static float GetDeltaTime() { return m_DeltaTime; }

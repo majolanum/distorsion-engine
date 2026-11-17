@@ -4,8 +4,9 @@
 class Transformable
 {
 protected:
-	Vector2f* m_Position;
+	Vector2f m_Position;
 public:
-	Transformable(float posX, float posY) { m_Position = new Vector2f(posX, posY); }
+	Transformable() = default;
+	Transformable(float posX, float posY) { m_Position = { posX, posY }; }
 };
 

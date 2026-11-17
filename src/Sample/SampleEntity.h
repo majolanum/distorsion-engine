@@ -4,9 +4,9 @@
 class SampleEntity : public Entity
 {
 public:
-	using Entity::Entity;
-
+	
 	bool EndScene = false;
+	void OnInitialize() override;
 	void OnCollide(Entity* collideWith) override;
 
 };

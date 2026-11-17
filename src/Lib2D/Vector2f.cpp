@@ -1,17 +1,9 @@
 #include "Vector2f.h"
 #include <iostream>
+#include <cmath>
 
-
-float Vector2f::GetDistance(Vector2f other)
-{
-	int dx = x - other.x;
-	int dy = y - other.y;
-	float distance = sqrt(dx * dx + dy * dy);
-	return distance;
-}
-
-Vector2f* Vector2f::Normalize()
-{
+Vector2f& Vector2f::Normalize()
+{	
 	float mag = std::sqrt(x * x + y * y);
 	if (mag > 0)
 	{
@@ -19,7 +11,17 @@ Vector2f* Vector2f::Normalize()
 		y /= mag;
 	}
 
-	return this;
+	return *this;
+}
+
+float Vector2f::Distance(const Vector2f& a, const Vector2f& b)
+{
+	return (b - a).Magnitude();
+}
+
+float Vector2f::Magnitude() const
+{
+	return std::hypot(x, y);
 }
 
 Vector2f Vector2f::operator+(float value) const
@@ -50,4 +52,47 @@ Vector2f Vector2f::operator+(Vector2f other) const
 Vector2f Vector2f::operator-(Vector2f other) const
 {
 	return{ x - other.x, y - other.y };
+}
+
+
+
+Vector2f& Vector2f::operator+=(const Vector2f& other) 
+{
+	x += other.x;
+	y += other.y;
+
+	return *this;
+}
+
+Vector2f& Vector2f::operator-=(const Vector2f& other) 
+{
+	x -= other.x;
+	y -= other.y;
+
+	return *this;
+}
+
+bool Vector2f::operator==(const Vector2f& other)
+{
+	return x == other.x && y == other.y;
+}
+
+bool Vector2f::operator<=(const Vector2f& other)
+{
+	return x <= other.x && y<= other.y;
+}
+
+bool Vector2f::operator>=(const Vector2f& other)
+{
+	return x >= other.x && y >= other.y;
+}
+
+bool Vector2f::operator<(const Vector2f& other)
+{	
+	return x < other.x && y < other.y;
+}
+
+bool Vector2f::operator>(const Vector2f& other)
+{
+	return x > other.x && y > other.y;
 }

@@ -1,7 +1,7 @@
 #include "ApplicationInfo.h"
 
-void ApplicationInfo::SetWindowSize(Vector2f* windowSize)
+void ApplicationInfo::SetWindowSize(Vector2f windowSize)
 {
-	m_WindowWidth = windowSize->x;
-	m_WindowHeight = windowSize->y;
+	m_WindowWidth = windowSize.x;
+	m_WindowHeight = windowSize.y;
 }

@@ -33,7 +33,7 @@ protected:
 	/// <param name="zAxis">tell in wich order draw the entity, default -1 : after the last created entity</param>
 	/// <returns></returns>
 	template<typename T>
-	T* NewEntity(Vector2f* position, int width, int height, std::string TexturPath, int zAxis =-1);
+	T* NewEntity(Vector2f position, Vector2f size, std::string texturPath , int zAxis =-1);
 
 	template<typename T>
 	T* GetEntity();
@@ -53,9 +53,12 @@ protected:
 };
 
 template<typename T>
-inline T* Scene::NewEntity(Vector2f* position, int width, int height, std::string TexturPath, int zAxis)
+inline T* Scene::NewEntity(Vector2f position, Vector2f size, std::string texturPath, int zAxis)
 {
-	T* NewEntity = new T(position, width, height, TexturPath);
+	T* NewEntity = new T();
+	static_cast<Entity*>(NewEntity)->SetPosition(position);
+	static_cast<Entity*>(NewEntity)->SetSize(size);
+	static_cast<Entity*>(NewEntity)->ChangeTexturePath(texturPath);
 
 	if (zAxis == -1)
 		m_AllEntity.push_back(NewEntity);

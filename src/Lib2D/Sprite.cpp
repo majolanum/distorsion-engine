@@ -1,8 +1,9 @@
 #include "Sprite.h"
 
-Sprite::Sprite(std::string texturePath, float posX, float posY) : Transformable(posX, posY)
+void Sprite::ChangeTexturePath(std::string newTexturePath)
 {
-	LoadTexture(texturePath.c_str());
+	if(newTexturePath.empty() == false)
+		LoadTexture(newTexturePath.c_str());
 }
 
 void Sprite::LoadTexture(const char* TexturePath)
@@ -34,7 +35,7 @@ void Sprite::Draw(Window* w)
 		//SDL_QueryTexture(m_Texture, NULL, NULL, &m_Width, &m_Height);
 	}
 
-	SDL_FRect dst = { m_Position->x, m_Position->y, m_Width,m_Height };
+	SDL_FRect dst = { m_Position.x, m_Position.y, m_Width,m_Height };
 	SDL_RenderTexture(w->m_Renderer, m_Texture, NULL, &dst);
 	std::cout << SDL_GetError();
 }

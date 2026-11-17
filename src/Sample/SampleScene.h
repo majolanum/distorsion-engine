@@ -5,8 +5,8 @@
 class SampleScene : public Scene
 {
 private: 
-	SampleEntity* Entity1;
-	SampleEntity* Entity2;
+	SampleEntity* Entity1 = nullptr;
+	SampleEntity* Entity2 = nullptr;
 
 public :
 	SampleScene(std::string name) : Scene(name) {}

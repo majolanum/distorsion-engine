@@ -14,15 +14,15 @@ struct Geometry
 
 struct Line :public Geometry
 {
-	Vector2f pointA;
-	Vector2f pointB;
+	Vector2f pointA = {};
+	Vector2f pointB = {};
 
 	void Draw(SDL_Renderer* renderer) override;
 };
 
 struct Circle :public  Geometry
 {
-	Vector2f position;
+	Vector2f position = {};
 	float radius = 0.0f;
 
 	void Draw(SDL_Renderer* renderer) override;
@@ -34,8 +34,8 @@ private:
 
 struct Rectangle :public  Geometry
 {
-	Vector2f position;
-	Vector2f size;
+	Vector2f position = {};
+	Vector2f size = {};
 
 	void Draw(SDL_Renderer* renderer) override;
 };

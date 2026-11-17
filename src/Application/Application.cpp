@@ -12,6 +12,14 @@ Application* Application::Get()
 	return instance;
 }
 
+void Application::LauchApp()
+{
+	InitApplication();
+	while (run)
+		RunApplication();
+	EndApplication();
+}
+
 bool* Application::InitApplication()
 {
 	m_MainWindow = new Window();
@@ -56,7 +64,7 @@ void Application::RunApplication()
 
 	DeltaTime = m_FPSTimer->EndTimer();
 
-	int diff = TARGET_ELAPSED - DeltaTime;
+	float diff = TARGET_ELAPSED - DeltaTime;
 	if (diff > 0)
 	{
 		SDL_Delay(diff);
@@ -101,8 +109,6 @@ void Application::GetEvent()
 	}
 	if (m_ImputeManager->IsKeyDown(Key_echap))
 	{
-		delete m_MainWindow;
-		SDL_Quit();
 		run = false;
 		return;
 	}

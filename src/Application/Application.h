@@ -7,14 +7,14 @@
 #include "Distortion_engine/Timer.h"
 #include "Distortion_engine/Game.h"
 
-#define TARGET_FPS 60
-#define TARGET_ELAPSED 1000/TARGET_FPS
+constexpr int TARGET_FPS = 60;
+constexpr float TARGET_ELAPSED = 1000 / TARGET_FPS;
 
 class Application
 {
 private:
-	Window* m_MainWindow;
-	InputManager* m_ImputeManager;
+	Window* m_MainWindow = nullptr;
+	InputManager* m_ImputeManager = nullptr;
 	SDL_Event event;
 
 	std::vector<Game*> m_AllGame;
@@ -32,20 +32,23 @@ private:
 	static Application* instance;
 
 	void GetEvent();
-
-public:
-	static Application* Get();
-
 	bool* InitApplication();
 	void RunApplication();
 	void DrawApplication();
 	void EndApplication();
-
-	template<typename T>
-	void AddGame(std::string gameName, std::string gameIconLink);
 	
 	void ChooseGame();
 	void ChangeGame(std::string gameName);
+
+public:
+	static Application* Get();
+
+	void LauchApp();
+
+	template<typename T>
+	void AddGame(std::string gameName, std::string gameIconLink);
+
+	friend class SelectGame;
 };
 
 template<typename T>

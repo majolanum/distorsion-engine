@@ -25,17 +25,17 @@ void SelecteGameScene::SetAllGame(std::map<std::string, std::string> gameList)
 {
 	float windowWidth = ApplicationInfo::GetWindowWidth();
 	float windowHeight = ApplicationInfo::GetWindowHeight();
-	int iconSize = 100;
+	float iconSize = 100.f;
 
 
 	switch (gameList.size())
 	{
 	case 1:
 	{
-		Vector2f* pos = new Vector2f((windowWidth / 2) - iconSize / 2, (windowHeight / 2) - iconSize / 2);
+		Vector2f pos = { (windowWidth / 2) - iconSize / 2, (windowHeight / 2) - iconSize / 2 };
 
 		auto it = gameList.begin();
-		GameIcon* GI = NewEntity<GameIcon>(pos, iconSize, iconSize, it->first);
+		GameIcon* GI = NewEntity<GameIcon>(pos, { iconSize ,iconSize }, it->first);
 		GI->SetGameName(it->second);
 		m_AllGameIcon.push_back(GI);
 		break;
@@ -48,8 +48,8 @@ void SelecteGameScene::SetAllGame(std::map<std::string, std::string> gameList)
 
 		for (auto it = gameList.begin(); it != gameList.end(); ++it)
 		{
-			Vector2f* pos = new Vector2f(posX1 * iterator, posY1);
-			GameIcon* GI = NewEntity<GameIcon>(pos, iconSize, iconSize, it->first);
+			Vector2f pos = { posX1 * iterator, posY1 };
+			GameIcon* GI = NewEntity<GameIcon>(pos, { iconSize, iconSize }, it->first);
 			GI->SetGameName(it->second);
 			m_AllGameIcon.push_back(GI);
 			iterator++;

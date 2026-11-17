@@ -3,7 +3,7 @@
 
 #include "SceneManager.h"
 
-struct Window;
+class Window;
 
 class Game
 {

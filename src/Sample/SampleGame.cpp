@@ -1,4 +1,5 @@
 #include "SampleGame.h"
+#include "SampleScene.h"
 
 void SampleGame::OnInitialize()
 {

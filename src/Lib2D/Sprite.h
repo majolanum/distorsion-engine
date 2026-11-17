@@ -11,25 +11,20 @@ class Window;
 class Sprite : public Transformable, public Drawable
 {
 protected:
-	float m_Width;
-	float m_Height;
-	SDL_Surface* m_Surface;
-	SDL_Texture* m_Texture;
+	float m_Width = 0.0f;
+	float m_Height = 0.0f;
+	SDL_Surface* m_Surface = {};
+	SDL_Texture* m_Texture = {};
 
 	void ChangeTexturePath(std::string newTexturePath);
 
 public:
-	Sprite(std::string texturePath, float posX = 0, float posY = 0);
+	Sprite() : Transformable() {};
 	void LoadTexture(const char* TexturePath);
-	void SetTextureSize(int newWidth, int newHeight) { m_Width = newWidth; m_Height = newHeight; }
+	void SetTextureSize(float newWidth, float newHeight) { m_Width = newWidth; m_Height = newHeight; }
 	void Draw(Window*) override;
 
-/*	void GetSize(int* width, int* height) {
-		*width = m_Width; *height = m_Height;
-	};*/
-
-	float GetWidth() const { return m_Width; }
-	float GetHeight() const { return m_Height; }
+	Vector2f GetSize() const { return { m_Width,m_Height }; }
 	~Sprite();
 
 	friend class Entity;

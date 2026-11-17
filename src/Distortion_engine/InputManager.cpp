@@ -113,15 +113,7 @@ void InputManager::UpdateMouse(SDL_Event event)
 
 	}
 	case SDL_EVENT_MOUSE_MOTION:
-	{
-		if (MousePos == nullptr)
-			MousePos = new Vector2f(event.button.x, event.button.y);
-		else
-		{
-			MousePos->x = event.button.x;
-			MousePos->y = event.button.y;
-		}
-		break;
-	}
+		MousePos = { event.button.x, event.button.y };	break;
 	}
 }
+    

@@ -1,6 +1,5 @@
 #pragma once
 #include "Distortion_engine\Game.h"
-#include "SampleScene.h"
 
 class SampleGame : public Game
 {
