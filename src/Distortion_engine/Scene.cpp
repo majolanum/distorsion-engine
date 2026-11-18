@@ -55,11 +55,8 @@ void Scene::DoCollide()
 				continue;
 
 			if (entity->HaveRigBody && otherEntity->HaveRigBody)
-			{
-				//TODO : faire le repusle
-				entity->Repulse();
-				otherEntity->Repulse();
-			}
+				entity->Repulse(otherEntity);
+			
 
 			entity->OnCollide(otherEntity);
 			otherEntity->OnCollide(entity);

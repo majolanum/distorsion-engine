@@ -11,10 +11,11 @@ private:
 	static void SetWindowSize(Vector2f windowSize);
 
 public:
+	static inline bool IsDebugDraw = false;
+
 	static float GetDeltaTime() { return m_DeltaTime; }
 	static float GetWindowWidth() { return m_WindowWidth; }
 	static float GetWindowHeight() { return m_WindowHeight; }
-	
 	static const std::string GetTemplateLink() { return "../../res/Lib2D/PlaceHolder.png"; }
 
 	friend class Application;

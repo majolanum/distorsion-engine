@@ -1,46 +1,43 @@
 #include <iostream>
 #include "Collider.h"
 
-void Collider::UpdateCollider(Vector2f OwnerPosition, float Width, float Height)
+void Collider::UpdateCollider(Vector2f ownerPosition, float width, float height)
 {
-	m_ColliderPosition = { OwnerPosition.x, OwnerPosition.y,Width,Height };
+	if (m_ColliderType == ColliderType::Rectangle)
+		m_ColliderPosition = { ownerPosition.x,ownerPosition.y,width,height };
+
+	if (m_ColliderType == ColliderType::Circle)
+	{
+		m_ColliderPosition.x = ownerPosition.x;
+		m_ColliderPosition.y = ownerPosition.y;
+	}
 }
 
 bool Collider::IsCollide(Collider* otherCollider) const
 {
 	switch (m_ColliderType)
 	{
-	case 1:
+	case ColliderType::Rectangle:
 	{
 		switch (otherCollider->m_ColliderType)
 		{
-		case 1:
-		{
-			return RectCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y });
-			break;
-		}
-		case 2:
-		{
-			return CircleRectCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y });
-			break;
-		}
+		case ColliderType::Rectangle:		
+			return RectCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y });break;
+
+		case ColliderType::Circle:
+			return CircleRectCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y });break;
 		}
 		break;
 	}
-	case 2:
+	case ColliderType::Circle:
 	{
 		switch (otherCollider->m_ColliderType)
 		{
-		case 1:
-		{
-			return CircleRectCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y });
-			break;
-		}
-		case 2:
-		{
-			return CircleCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y }, otherCollider->m_Radius);
-			break;
-		}
+		case ColliderType::Rectangle:
+			return CircleRectCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y });break;
+
+		case ColliderType::Circle:
+			return CircleCollide(otherCollider->m_ColliderPosition, otherCollider->m_Radius); break;
 		}
 		break;
 	}
@@ -64,9 +61,13 @@ bool Collider::CircleRectCollide(SDL_FRect otherPosition) const
 	return false;
 }
 
-bool Collider::CircleCollide(Vector2f otherPosition, int otherRadius) const
+bool Collider::CircleCollide(SDL_FRect otherPosition, int otherRadius) const
 {
-	float distance = m_OwnerPosition.Distance(m_OwnerPosition, otherPosition);
+	Vector2f otherPos = { otherPosition.x,otherPosition.y };
+	Vector2f colliderPos = { m_ColliderPosition.x,m_ColliderPosition.y };
+
+	float distance = Vector2f::Distance(colliderPos, otherPos);
+
 	if (distance < m_Radius + otherRadius)
 		return true;
 	else

@@ -14,6 +14,11 @@ Vector2f& Vector2f::Normalize()
 	return *this;
 }
 
+float Vector2f::Dot(const Vector2f& a, const Vector2f& b)
+{
+	return a.x * b.x + a.y * b.y;
+}
+
 float Vector2f::Distance(const Vector2f& a, const Vector2f& b)
 {
 	return (b - a).Magnitude();

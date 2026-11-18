@@ -20,11 +20,15 @@ private:
 	bool CanCollide = false;
 	bool HaveRigBody = false;
 
+	Vector2f Velocity = {};
+
 	void Move(float deltaTime);
 	void Update(float deltaTime);
 	void Draw(Window*) override;
 	bool IsAtTarget();
-	void Repulse();
+	void Repulse(Entity* other);
+	void CircleRepulse(Entity* other);
+	void RctangleRepulse(Entity* other);
 
 protected:
 	Entity() : Sprite() {};
@@ -34,19 +38,20 @@ protected:
 	virtual void OnCollide(Entity* collideWith) {}
 	virtual void OnDestroy() {}
 
-	void SetIndex(int index) { m_Index = index; }
 	int GetIndex() const { return m_Index; }
 public:
 
 	/// <summary>
-	/// Set if the entity can collide with other entity
+	/// Set if the entity can collide with other entity.
+	/// If type 1 : radius = -1
 	/// </summary>
-	///<param name = "newType"> collider type : 0 = non, 1 = rect, 2 = circle</param>
-	void SetCollider(bool newState, int newType);
+	void SetCollider(bool newState, ColliderType newType, float newRadius = -1);
 
 	void SetRigBody(bool newState) { HaveRigBody = newState; }
+	void SetIndex(int index) { m_Index = index; }
 
 	void SetSize(Vector2f newSize) { m_Width = newSize.x, m_Height = newSize.y; }
+	void SetSize(float newRadius) { m_Radius = newRadius; }
 
 	void SetPosition(Vector2f position) { m_Position = position; }
 	Vector2f GetPosition(float anchorX = 0.5f, float anchorY = 0.5f);
