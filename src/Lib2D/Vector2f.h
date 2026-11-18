@@ -26,6 +26,9 @@ public:
 	Vector2f operator- (float value) const;
 	Vector2f operator* (float value) const;
 	Vector2f operator/ (float value) const;
+	Vector2f& operator+= (const float value);
+	Vector2f& operator-= (const float value);
+
 
 	Vector2f operator+ (Vector2f other) const;
 	Vector2f operator- (Vector2f other) const;

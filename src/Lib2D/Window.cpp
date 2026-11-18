@@ -26,6 +26,14 @@ Vector2f Window::OpenWindow(const char* windowName, float Width, float Height)
 		std::cout << "code de l erreur :" << SDL_GetError() << std::endl;
 		exit(1);
 	}
+	
+	bool VSyncActived = SDL_SetRenderVSync(m_Renderer, 0);
+	if (VSyncActived == false)
+	{
+		std::cout << "Erreur lors de la VSync" << std::endl;
+		std::cout << "code de l erreur :" << SDL_GetError() << std::endl;
+		exit(1);
+	}
 
 	isWindowOpen = true;
 	return { Width, Height };

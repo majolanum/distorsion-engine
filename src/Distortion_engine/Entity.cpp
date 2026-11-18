@@ -3,14 +3,6 @@
 #include "Lib2D/Debug.h"
 #include "Application/ApplicationInfo.h"
 
-void Entity::GoToDirection(Vector2f position, float speed)
-{
-	m_Target.IsSet = false;
-	if (speed != -1)
-	{
-		m_Speed = speed;
-	}
-}
 
 bool Entity::IsAtTarget()
 {
@@ -38,7 +30,7 @@ void Entity::Repulse(Entity* other)
 	{
 	}
 	if (m_ColliderType == ColliderType::Rectangle && other->m_ColliderType == ColliderType::Rectangle)
-		RctangleRepulse(other);	
+		RctangleRepulse(other);
 }
 
 void Entity::CircleRepulse(Entity* other)
@@ -94,28 +86,26 @@ Vector2f Entity::GetPosition(float anchorX, float anchorY)
 	}return pos;
 }
 
-void Entity::GoToPosition(Vector2f position, float speed)
+void Entity::GoToDirection(Vector2f position, float speed)
 {
 	m_Target.IsSet = false;
-	if (speed != -1)
-	{
-		m_Speed = speed;
-		m_Target.TargetPosition = position;
 
-		float targetDirectionX = m_Target.TargetPosition.x - m_Position.x;
-		float targetDirectionY = m_Target.TargetPosition.y - m_Position.y;
+	m_Speed = speed;
 
-		m_Target.TargetDirection = { targetDirectionX, targetDirectionY };
-		m_Target.TargetDirection.Normalize();
+	float targetDirectionX = m_Target.TargetPosition.x - m_Position.x;
+	float targetDirectionY = m_Target.TargetPosition.y - m_Position.y;
 
-		if (IsAtTarget())
-		{
-			SetPosition(m_Target.TargetPosition);
-			m_Target.IsSet = false;
-		}
-		else
-			m_Target.IsSet = true;
-	}
+	m_Target.TargetDirection = { targetDirectionX, targetDirectionY };
+	m_Target.TargetDirection.Normalize();
+
+	Velocity = m_Target.TargetDirection + speed;
+	m_Target.IsSet = true;
+}
+
+void Entity::GoToPosition(Vector2f position, float speed)
+{
+	GoToDirection(position, speed);
+	m_Target.TargetPosition = position;
 }
 
 void Entity::Move(float deltaTime)
@@ -129,9 +119,9 @@ void Entity::Move(float deltaTime)
 	{
 		float distance = deltaTime * m_Speed;
 		Vector2f translation = { distance * m_Target.TargetDirection.x, distance * m_Target.TargetDirection.y
-		};translation.Normalize();
+		};
 
-		m_Position += translation;
+		m_Position += Velocity* deltaTime;
 
 	}
 }
@@ -146,16 +136,13 @@ void Entity::Draw(Window* w)
 {
 	if (ApplicationInfo::IsDebugDraw)
 	{
-		if(m_ColliderType == ColliderType::Rectangle)
+		if (m_ColliderType == ColliderType::Rectangle)
 			Debug::DrawRect(GetPosition(0, 0), GetSize(), Color::Yellow, false);
-		else if(m_ColliderType == ColliderType::Circle)
+		else if (m_ColliderType == ColliderType::Circle)
 			Debug::DrawCircle(GetPosition(), m_Radius, Color::Yellow);
 
-		if (m_Target.IsSet)
-		{
-			Debug::DrawLine(GetPosition(), m_Target.TargetPosition, Color::Orange);
-		}
-
+		//if (m_Target.IsSet)
+			//Debug::DrawLine(GetPosition(), m_Target.TargetPosition, Color::Orange);
 	}
 
 	Sprite::Draw(w);

@@ -57,7 +57,6 @@ public:
 	Vector2f GetPosition(float anchorX = 0.5f, float anchorY = 0.5f);
 	
 	void GoToPosition(Vector2f position, float speed = -1);
-
 	void GoToDirection(Vector2f position, float speed = -1);
 
 	friend class Collider;

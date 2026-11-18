@@ -33,7 +33,7 @@ bool* Application::InitApplication()
 	run = true;
 
 	AddGame<SelectGame>(m_SelecteGame, ApplicationInfo::GetTemplateLink());
-
+	previousTime = SDL_GetTicksNS();
 	return &run;
 }
 
@@ -41,6 +41,10 @@ void Application::RunApplication()
 {
 	m_FPSTimer->StartTimer();
 	m_MainWindow->ClearWindow();
+	//const Uint64 frameStart = SDL_GetTicksNS();
+   //     DeltaTime = frameStart - previousTime;
+    //    previousTime = frameStart;
+
 
 	GetEvent();
 
@@ -62,7 +66,8 @@ void Application::RunApplication()
 
 	m_MainWindow->Present();
 
-	DeltaTime = m_FPSTimer->EndTimer();
+	DeltaTime =m_FPSTimer->EndTimer();
+	std::cout << DeltaTime <<std::endl;
 
 	float diff = TARGET_ELAPSED - DeltaTime;
 	if (diff > 0)
@@ -75,7 +80,7 @@ void Application::RunApplication()
 	TotalElapsed += DeltaTime;
 	if (TotalElapsed >= 1000)
 	{
-		std::cout << "fps : " << FramCount << std::endl;
+		//std::cout << "fps : " << FramCount << std::endl;
 		TotalElapsed = 0;
 		FramCount = 0;
 	}

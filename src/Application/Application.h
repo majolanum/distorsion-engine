@@ -23,6 +23,7 @@ private:
 	float DeltaTime = 0, TotalElapsed = 0;
 	int FramCount = 0;
 	Timer* m_FPSTimer = nullptr;
+	Uint64 previousTime;
 
 	std::string m_SelecteGame = "Select_Game";
 

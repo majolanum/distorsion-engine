@@ -7,7 +7,7 @@ void SampleScene::OnInitialize()
 	Entity1 = NewEntity<SampleEntity>({ 50, 50 }, {50,50}, ApplicationInfo::GetTemplateLink());
 	Entity2 = NewEntity<SampleEntity>({ 200, 200 }, { 50,50 }, ApplicationInfo::GetTemplateLink());
 
-	Entity1->GoToPosition({ 200, 200 }, 10);
+	Entity1->GoToPosition({ 800, 500 }, 10);
 	ApplicationInfo::IsDebugDraw = true;
 
 }
