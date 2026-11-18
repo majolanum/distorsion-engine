@@ -14,7 +14,7 @@ void Scene::Update(float DeltaTime)
 	{
 		e->Update(DeltaTime);
 
-		if (e->ToDestroy)
+		if (e->toDestroy)
 		{
 			RemoveEntity(e, m_AllEntity);
 			m_EntityToDestroy.push_back(e);
@@ -45,7 +45,7 @@ void Scene::DoCollide()
 			Entity* entity = *it1;
 			Entity* otherEntity = *it2;
 
-			if (entity->ToDestroy || otherEntity->ToDestroy)
+			if (entity->toDestroy || otherEntity->toDestroy)
 				continue;
 
 			if (entity->CanCollide == false || otherEntity->CanCollide == false)

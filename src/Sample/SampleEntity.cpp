@@ -2,7 +2,6 @@
 
 void SampleEntity::OnInitialize()
 {
-	SetCollider(true, ColliderType::Circle);
 	SetRigBody(true);
 }
 

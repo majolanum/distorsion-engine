@@ -8,13 +8,9 @@ bool Entity::IsAtTarget()
 {
 	if (m_Target.IsSet)
 	{
-		float distanceToTargetX = m_Target.TargetPosition.x - m_Position.x;
-		float distanceToTargetY = m_Target.TargetPosition.y - m_Position.y;
-
-		if (distanceToTargetX < 0.2f || distanceToTargetY < 0.2f)
-		{
+		Vector2f distanceToTarget = m_Target.TargetPosition - m_Position;
+		if (distanceToTarget.Magnitude() < 0.2f)
 			return true;
-		}
 		else
 			return false;
 	}
@@ -108,15 +104,12 @@ Vector2f Entity::GetPosition(float anchorX, float anchorY)
 void Entity::GoToDirection(Vector2f position, float speed)
 {
 	m_Speed = speed;
-
-	float targetDirectionX = m_Target.TargetPosition.x - m_Position.x;
-	float targetDirectionY = m_Target.TargetPosition.y - m_Position.y;
-
-	m_Target.TargetDirection = { targetDirectionX, targetDirectionY };
-	m_Target.TargetDirection.Normalize();
 	m_Target.TargetPosition = position;
 
-	Velocity = m_Target.TargetDirection + speed;
+	m_Target.TargetDirection =m_Target.TargetPosition - m_Position;
+	m_Target.TargetDirection.Normalize();
+
+	Velocity = m_Target.TargetDirection * speed;
 }
 
 void Entity::GoToPosition(Vector2f position, float speed)
@@ -131,6 +124,7 @@ void Entity::Move(float deltaTime)
 	{
 		SetPosition(m_Target.TargetPosition);
 		m_Target.IsSet = false;
+		Velocity = { 0,0 };
 	}
 
 	m_Position += Velocity * deltaTime;
@@ -156,4 +150,10 @@ void Entity::Draw(Window* w)
 	}
 
 	Sprite::Draw(w);
+}
+
+void Entity::Destroy()
+{
+	toDestroy = true;
+	OnDestroy();
 }

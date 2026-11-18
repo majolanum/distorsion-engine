@@ -23,7 +23,7 @@ class Entity : public Sprite, public Collider
 private:
 	int m_Speed = 0;
 	int m_Index = 0;
-	bool ToDestroy = false;
+	bool toDestroy = false;
 	bool CanCollide = false;
 	bool HaveRigBody = false;
 
@@ -66,6 +66,8 @@ public:
 	
 	void GoToPosition(Vector2f position, float speed = -1);
 	void GoToDirection(Vector2f position, float speed = -1);
+
+	void Destroy();
 
 	friend class Collider;
 	friend class Scene;
