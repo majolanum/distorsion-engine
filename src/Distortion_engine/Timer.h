@@ -8,6 +8,6 @@ private:
 
 public:
 	void StartTimer();
-	float EndTimer();
+	Uint64 EndTimer();
 };
 
