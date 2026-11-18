@@ -6,6 +6,7 @@ inline T* Scene::NewEntity(Vector2f position, Vector2f size, std::string texturP
 	T* NewEntity = new T();
 	static_cast<Entity*>(NewEntity)->SetPosition(position);
 	static_cast<Entity*>(NewEntity)->SetSize(size);
+	static_cast<Entity*>(NewEntity)->m_EntityType = EntityType::Rectangle;
 	static_cast<Entity*>(NewEntity)->SetCollider(true, ColliderType::Rectangle);
 	static_cast<Entity*>(NewEntity)->ChangeTexturePath(texturPath);
 
@@ -23,9 +24,9 @@ template<typename T>
 inline T* Scene::NewEntity(Vector2f position, float radius, std::string texturPath, int zAxis)
 {
 	T* NewEntity = new T();
-	static_cast<Entity*>(NewEntity)->SetPosition(position);
-	static_cast<Entity*>(NewEntity)->SetSize(radius);
-	static_cast<Entity*>(NewEntity)->SetCollider(true, ColliderType::Circle, radius);
+	static_cast<Entity*>(NewEntity)->SetPosition(position);	
+	static_cast<Entity*>(NewEntity)->m_EntityType = EntityType::Circle;
+	static_cast<Entity*>(NewEntity)->SetCollider(true, EntityType::Circle, radius);
 	static_cast<Entity*>(NewEntity)->ChangeTexturePath(texturPath);
 
 	static_cast<Entity*>(NewEntity)->OnInitialize();

@@ -24,14 +24,14 @@ void Game::DrawActualGame(Window* w)
 
 void Game::EndGame()
 {
-	delete m_SceneManager;
+	if(m_SceneManager)
+		delete m_SceneManager;
 	m_SceneManager = nullptr;
 	m_IsInitialized = false;
 }
 
 Game::~Game()
 {
-	m_Name.clear();
-	m_IsInitialized = false;
 	EndGame();
+	m_Name.clear();	
 }

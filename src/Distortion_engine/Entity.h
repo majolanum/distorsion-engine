@@ -4,6 +4,13 @@
 #include "Lib2D/Sprite.h"
 #include "Lib2D/Collider.h"
 
+enum class EntityType
+{
+	Rectangle = 1,
+	Circle = 2,
+};
+
+
 class Entity : public Sprite, public Collider
 {
 	struct Target
@@ -20,6 +27,7 @@ private:
 	bool CanCollide = false;
 	bool HaveRigBody = false;
 
+	EntityType m_EntityType = EntityType::Rectangle;
 	Vector2f Velocity = {};
 
 	void Move(float deltaTime);
@@ -53,7 +61,7 @@ public:
 	void SetSize(Vector2f newSize) { m_Width = newSize.x, m_Height = newSize.y; }
 	void SetSize(float newRadius) { m_Radius = newRadius; }
 
-	void SetPosition(Vector2f position) { m_Position = position; }
+	void SetPosition(Vector2f position, float anchorX = 0.5f, float anchorY = 0.5f);
 	Vector2f GetPosition(float anchorX = 0.5f, float anchorY = 0.5f);
 	
 	void GoToPosition(Vector2f position, float speed = -1);

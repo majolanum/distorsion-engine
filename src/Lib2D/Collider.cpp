@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Collider.h"
+#include "Distortion_engine/Entity.h"
 
 void Collider::UpdateCollider(Vector2f ownerPosition, float width, float height)
 {
@@ -21,7 +22,7 @@ bool Collider::IsCollide(Collider* otherCollider) const
 	{
 		switch (otherCollider->m_ColliderType)
 		{
-		case ColliderType::Rectangle:		
+		case ColliderType::Rectangle:
 			return RectCollide({ otherCollider->m_ColliderPosition.x,otherCollider->m_ColliderPosition.y });break;
 
 		case ColliderType::Circle:

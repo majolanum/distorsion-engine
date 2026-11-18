@@ -5,15 +5,16 @@
 void SampleScene::OnInitialize()
 {
 	Entity1 = NewEntity<SampleEntity>({ 50, 50 }, {50,50}, ApplicationInfo::GetTemplateLink());
-	Entity2 = NewEntity<SampleEntity>({ 200, 200 }, { 50,50 }, ApplicationInfo::GetTemplateLink());
+	//Entity2 = NewEntity<SampleEntity>({ 200, 200 }, { 50,50 }, ApplicationInfo::GetTemplateLink());
 
-	Entity1->GoToPosition({ 800, 500 }, 10);
+	Entity1->GoToPosition({ 200, 50 }, 100);
 	ApplicationInfo::IsDebugDraw = true;
 
 }
 
 void SampleScene::OnUpdate()
-{
+{	
+	std::cout << Entity1->GetPosition().x << Entity1->GetPosition().y << std::endl;
 	if (Entity1->EndScene)
 	{
 		m_SceneCompleted = true;

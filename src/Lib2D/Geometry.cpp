@@ -24,7 +24,7 @@ void Circle::DrawUnfilled(SDL_Renderer* renderer)
 	constexpr int segments = 64;
 	SDL_FPoint points[segments + 1];
 
-	for (int i = 1; i <= segments; i++)
+	for (int i = 0; i <= segments; i++)
 	{
 		float angle = i * 2.0f * M_PI/ segments;
 		
@@ -53,5 +53,6 @@ void Rectangle::Draw(SDL_Renderer* renderer)
 
 void Line::Draw(SDL_Renderer* renderer)
 {
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderLine(renderer, pointA.x, pointA.y, pointB.x, pointB.y);
 }

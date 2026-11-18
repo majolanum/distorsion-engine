@@ -127,6 +127,7 @@ void Application::ChangeGame(std::string gameName)
 
 			m_ActualGame = g;
 			m_ActualGame->Initialize();
+			return;
 		}
 	}
 }

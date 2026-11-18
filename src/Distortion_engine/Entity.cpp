@@ -24,12 +24,12 @@ bool Entity::IsAtTarget()
 
 void Entity::Repulse(Entity* other)
 {
-	if (m_ColliderType == ColliderType::Circle && other->m_ColliderType == ColliderType::Circle)
+	if (m_EntityType == EntityType::Circle && other->m_EntityType == EntityType::Circle)
 		CircleRepulse(other);
-	if (m_ColliderType == ColliderType::Rectangle && other->m_ColliderType == ColliderType::Circle)
+	if (m_EntityType == EntityType::Rectangle && other->m_EntityType == EntityType::Circle)
 	{
 	}
-	if (m_ColliderType == ColliderType::Rectangle && other->m_ColliderType == ColliderType::Rectangle)
+	if (m_EntityType == EntityType::Rectangle && other->m_EntityType == EntityType::Rectangle)
 		RctangleRepulse(other);
 }
 
@@ -37,6 +37,7 @@ void Entity::CircleRepulse(Entity* other)
 {
 	Vector2f AB = other->GetPosition() - GetPosition();
 	Vector2f normal = AB.Normalize();
+
 	float distance = AB.Magnitude();
 	float overlap = m_Radius + other->m_Radius - distance;
 
@@ -50,6 +51,9 @@ void Entity::CircleRepulse(Entity* other)
 
 	Velocity = vnB + vtA;
 	other->Velocity = vnA + vtB;
+
+	if (m_Target.IsSet)
+		GoToDirection(m_Target.TargetPosition, m_Speed);
 }
 
 void Entity::RctangleRepulse(Entity* other)
@@ -70,10 +74,25 @@ void Entity::SetCollider(bool newState, ColliderType newType, float newRadius)
 	}
 }
 
+void Entity::SetPosition(Vector2f position, float anchorX, float anchorY)
+{
+	if (m_EntityType == EntityType::Circle)
+	{
+		float size = m_Radius * 2.0f;
+		m_Position.x = position.x + size * anchorX;
+		m_Position.y = position.y + size * anchorY;
+	}
+	else
+	{		
+		m_Position.x = position.x + m_Width * anchorX;
+		m_Position.y = position.y + m_Height * anchorY;
+	}
+}
+
 Vector2f Entity::GetPosition(float anchorX, float anchorY)
 {
 	Vector2f pos = { 0,0 };
-	if (m_ColliderType == ColliderType::Circle)
+	if (m_EntityType == EntityType::Circle)
 	{
 		float size = m_Radius * 2.0f;
 		pos.x = m_Position.x + size * anchorX;
@@ -88,8 +107,6 @@ Vector2f Entity::GetPosition(float anchorX, float anchorY)
 
 void Entity::GoToDirection(Vector2f position, float speed)
 {
-	m_Target.IsSet = false;
-
 	m_Speed = speed;
 
 	float targetDirectionX = m_Target.TargetPosition.x - m_Position.x;
@@ -97,15 +114,15 @@ void Entity::GoToDirection(Vector2f position, float speed)
 
 	m_Target.TargetDirection = { targetDirectionX, targetDirectionY };
 	m_Target.TargetDirection.Normalize();
+	m_Target.TargetPosition = position;
 
 	Velocity = m_Target.TargetDirection + speed;
-	m_Target.IsSet = true;
 }
 
 void Entity::GoToPosition(Vector2f position, float speed)
 {
 	GoToDirection(position, speed);
-	m_Target.TargetPosition = position;
+	m_Target.IsSet = true;
 }
 
 void Entity::Move(float deltaTime)
@@ -115,15 +132,8 @@ void Entity::Move(float deltaTime)
 		SetPosition(m_Target.TargetPosition);
 		m_Target.IsSet = false;
 	}
-	if (m_Target.IsSet)
-	{
-		float distance = deltaTime * m_Speed;
-		Vector2f translation = { distance * m_Target.TargetDirection.x, distance * m_Target.TargetDirection.y
-		};
 
-		m_Position += Velocity* deltaTime;
-
-	}
+	m_Position += Velocity * deltaTime;
 }
 
 void Entity::Update(float deltaTime)
@@ -136,13 +146,13 @@ void Entity::Draw(Window* w)
 {
 	if (ApplicationInfo::IsDebugDraw)
 	{
-		if (m_ColliderType == ColliderType::Rectangle)
+		if (m_EntityType == EntityType::Rectangle)
 			Debug::DrawRect(GetPosition(0, 0), GetSize(), Color::Yellow, false);
-		else if (m_ColliderType == ColliderType::Circle)
+		else if (m_EntityType == EntityType::Circle)
 			Debug::DrawCircle(GetPosition(), m_Radius, Color::Yellow);
 
-		//if (m_Target.IsSet)
-			//Debug::DrawLine(GetPosition(), m_Target.TargetPosition, Color::Orange);
+		if (m_Target.IsSet)
+			Debug::DrawLine(GetPosition(), m_Target.TargetPosition, Color::Red);
 	}
 
 	Sprite::Draw(w);
