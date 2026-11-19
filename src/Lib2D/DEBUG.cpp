@@ -22,10 +22,10 @@ void Debug::Draw(SDL_Renderer* renderer)
 	m_AllLine.clear();
 }
 
-void Debug::DrawRect(Vector2f position, Vector2f size, Color color, bool filled)
+void Debug::DrawRect(Vector2f topLeftPosition, Vector2f size, Color color, bool filled)
 {
 	Rectangle rect;
-	rect.position = position;
+	rect.position = topLeftPosition;
 	rect.size = size;
 	rect.color = color;
 	rect.filled = filled;

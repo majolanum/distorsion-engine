@@ -27,6 +27,7 @@ inline T* Scene::NewEntity(Vector2f position, float radius, std::string texturPa
 	static_cast<Entity*>(NewEntity)->SetPosition(position);	
 	static_cast<Entity*>(NewEntity)->m_EntityType = EntityType::Circle;
 	static_cast<Entity*>(NewEntity)->SetCollider(true, ColliderType::Circle, radius);
+	static_cast<Entity*>(NewEntity)->SetSize({radius*2,radius*2});
 	static_cast<Entity*>(NewEntity)->ChangeTexturePath(texturPath);
 
 	static_cast<Entity*>(NewEntity)->OnInitialize();

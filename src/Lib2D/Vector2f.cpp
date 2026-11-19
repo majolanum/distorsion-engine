@@ -3,7 +3,7 @@
 #include <cmath>
 
 Vector2f& Vector2f::Normalize()
-{	
+{
 	float mag = std::sqrt(x * x + y * y);
 	if (mag > 0)
 	{
@@ -22,6 +22,12 @@ float Vector2f::Dot(const Vector2f& a, const Vector2f& b)
 float Vector2f::Distance(const Vector2f& a, const Vector2f& b)
 {
 	return (b - a).Magnitude();
+}
+
+float Vector2f::DistanceSqr(const Vector2f& a, const Vector2f& b)
+{
+	Vector2f translation = b - a;
+	return Dot(translation,translation);
 }
 
 float Vector2f::Magnitude() const
@@ -75,7 +81,17 @@ Vector2f Vector2f::operator-(Vector2f other) const
 	return{ x - other.x, y - other.y };
 }
 
-Vector2f& Vector2f::operator+=(const Vector2f& other) 
+Vector2f Vector2f::operator*(Vector2f other) const
+{
+	return { x * other.x, y * other.y };
+}
+
+Vector2f Vector2f::operator/(Vector2f other) const
+{
+	return { x / other.x, y / other.y };
+}
+
+Vector2f& Vector2f::operator+=(const Vector2f& other)
 {
 	x += other.x;
 	y += other.y;
@@ -83,7 +99,7 @@ Vector2f& Vector2f::operator+=(const Vector2f& other)
 	return *this;
 }
 
-Vector2f& Vector2f::operator-=(const Vector2f& other) 
+Vector2f& Vector2f::operator-=(const Vector2f& other)
 {
 	x -= other.x;
 	y -= other.y;
@@ -98,7 +114,7 @@ bool Vector2f::operator==(const Vector2f& other)
 
 bool Vector2f::operator<=(const Vector2f& other)
 {
-	return x <= other.x && y<= other.y;
+	return x <= other.x && y <= other.y;
 }
 
 bool Vector2f::operator>=(const Vector2f& other)
@@ -107,7 +123,7 @@ bool Vector2f::operator>=(const Vector2f& other)
 }
 
 bool Vector2f::operator<(const Vector2f& other)
-{	
+{
 	return x < other.x && y < other.y;
 }
 

@@ -15,8 +15,8 @@ private:
 	SDL_FRect m_ColliderPosition = {};
 	bool IsCollide(Collider* otherCollider) const;
 	bool RectCollide(SDL_FRect otherPosition) const;
-	bool CircleRectCollide(SDL_FRect otherPosition) const;
-	bool CircleCollide(SDL_FRect otherPosition, int otherRadius) const;
+	bool CircleRectCollide(Vector2f circlePos,float circleRadius,SDL_FRect rect) const;
+	bool CircleCollide(SDL_FRect otherPosition, float otherRadius) const;
 
 protected:
 	/// <summary>

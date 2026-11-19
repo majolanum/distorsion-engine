@@ -19,13 +19,17 @@ class Entity : public Sprite, public Collider
 		Vector2f TargetDirection = {};
 		bool IsSet = false;
 	} m_Target;
+	struct Physique {
+		bool haveRigBody = false;
+		int weight = 1;
+		float restitutionCoef = 1;
+	} m_Physique;
 
 private:
 	int m_Speed = 0;
 	int m_Index = 0;
 	bool toDestroy = false;
 	bool CanCollide = false;
-	bool HaveRigBody = false;
 
 	EntityType m_EntityType = EntityType::Rectangle;
 	Vector2f Velocity = {};
@@ -55,7 +59,7 @@ public:
 	/// </summary>
 	void SetCollider(bool newState, ColliderType newType, float newRadius = -1);
 
-	void SetRigBody(bool newState) { HaveRigBody = newState; }
+	void SetRigBody(bool newState) { m_Physique.haveRigBody = newState; }
 	void SetIndex(int index) { m_Index = index; }
 
 	void SetSize(Vector2f newSize) { m_Width = newSize.x, m_Height = newSize.y; }

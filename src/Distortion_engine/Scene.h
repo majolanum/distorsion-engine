@@ -52,7 +52,7 @@ protected:
 	/// Tell if the mouse is insinde the entity 
 	/// </summary>
 	bool IsInside(Entity* entity);
-	void RemoveEntity(Entity* entityToRemove, std::vector<Entity*>vector);
+	void RemoveEntity(Entity* entityToRemove, std::vector<Entity*>&vector);
 
 	~Scene();
 

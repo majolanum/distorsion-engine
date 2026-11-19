@@ -54,7 +54,7 @@ void Scene::DoCollide()
 			if (entity->IsCollide(otherEntity) == false)
 				continue;
 
-			if (entity->HaveRigBody && otherEntity->HaveRigBody)
+			if (entity->m_Physique.haveRigBody && otherEntity->m_Physique.haveRigBody)
 				entity->Repulse(otherEntity);
 			
 
@@ -80,7 +80,7 @@ bool Scene::IsInside(Entity* entity)
 		return false;
 }
 
-void Scene::RemoveEntity(Entity* entityToRemove, std::vector<Entity*> vector)
+void Scene::RemoveEntity(Entity* entityToRemove, std::vector<Entity*>& vector)
 {
 	int size = vector.size() - 1;
 

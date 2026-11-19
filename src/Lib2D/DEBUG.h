@@ -18,7 +18,7 @@ public:
 	/// 
 	/// </summary>	
 	/// <param name="size">x = width, y = height</param>	
-	static void DrawRect(Vector2f position, Vector2f size, Color color, bool filled);
+	static void DrawRect(Vector2f topLeftPosition, Vector2f size, Color color, bool filled);
 	static void DrawLine(Vector2f pointA, Vector2f pointB, Color color);
 	static void DrawCircle(Vector2f center, int radius, Color color);
 

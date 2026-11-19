@@ -1,8 +1,8 @@
 #include <iostream>
+#include <assert.h>
 #include "Entity.h"
 #include "Lib2D/Debug.h"
 #include "Application/ApplicationInfo.h"
-
 
 bool Entity::IsAtTarget()
 {
@@ -33,23 +33,33 @@ void Entity::CircleRepulse(Entity* other)
 {
 	Vector2f AB = other->GetPosition() - GetPosition();
 	Vector2f normal = AB.Normalize();
+	float overlap = m_Radius + other->m_Radius - AB.Magnitude();
 
-	float distance = AB.Magnitude();
-	float overlap = m_Radius + other->m_Radius - distance;
+	assert(overlap >= 0);
 
-	m_Position -= normal * (overlap * 0.5f);
-	other->m_Position += normal * (overlap * 0.5f);
+	Vector2f relativeVelocity = Velocity - other->Velocity;
+	float closingSpeed = Vector2f::Dot(relativeVelocity, normal);
 
-	Vector2f vnA = normal * Vector2f::Dot(Velocity, normal);
-	Vector2f vtA = Velocity - vnA;
-	Vector2f vnB = normal * Vector2f::Dot(other->Velocity, normal);
-	Vector2f vtB = other->Velocity - vnB;
+	float totalWeight = m_Physique.weight + other->m_Physique.weight;
+	float ratioA = other->m_Physique.weight / totalWeight;
+	float ratioB = m_Physique.weight / totalWeight;
 
-	Velocity = vnB + vtA;
-	other->Velocity = vnA + vtB;
+	m_Position -= normal * (overlap * ratioA);
+	other->m_Position += normal * (overlap * ratioB);
 
-	if (m_Target.IsSet)
-		GoToDirection(m_Target.TargetPosition, m_Speed);
+	Vector2f newAVelocity = (normal * -1) * (closingSpeed * ratioA);
+	Vector2f newBVelocity = normal * (closingSpeed * ratioB);
+
+	Velocity += newAVelocity;
+	other->m_Position += newBVelocity;
+
+	float totalRestitutionCoef = (m_Physique.restitutionCoef + other->m_Physique.restitutionCoef) / 2;
+
+	Velocity += newAVelocity * totalRestitutionCoef;
+	other->m_Position += newBVelocity * totalRestitutionCoef;
+
+	//if (m_Target.IsSet)
+	//	GoToDirection(m_Target.TargetPosition, m_Speed);
 }
 
 void Entity::RctangleRepulse(Entity* other)
@@ -79,7 +89,7 @@ void Entity::SetPosition(Vector2f position, float anchorX, float anchorY)
 		m_Position.y = position.y + size * anchorY;
 	}
 	else
-	{		
+	{
 		m_Position.x = position.x + m_Width * anchorX;
 		m_Position.y = position.y + m_Height * anchorY;
 	}
@@ -90,7 +100,7 @@ Vector2f Entity::GetPosition(float anchorX, float anchorY)
 	Vector2f pos = { 0,0 };
 	if (m_EntityType == EntityType::Circle)
 	{
-		float size = m_Radius * 2.0f;
+		float size = m_Radius*2.f;
 		pos.x = m_Position.x + size * anchorX;
 		pos.y = m_Position.y + size * anchorY;
 	}
@@ -106,7 +116,7 @@ void Entity::GoToDirection(Vector2f position, float speed)
 	m_Speed = speed;
 	m_Target.TargetPosition = position;
 
-	m_Target.TargetDirection =m_Target.TargetPosition - m_Position;
+	m_Target.TargetDirection = m_Target.TargetPosition - m_Position;
 	m_Target.TargetDirection.Normalize();
 
 	Velocity = m_Target.TargetDirection * speed;
@@ -143,8 +153,10 @@ void Entity::Draw(Window* w)
 		if (m_EntityType == EntityType::Rectangle)
 			Debug::DrawRect(GetPosition(0, 0), GetSize(), Color::Yellow, false);
 		else if (m_EntityType == EntityType::Circle)
-			Debug::DrawCircle(GetPosition(), m_Radius, Color::Yellow);
-
+		{
+		Vector2f pos = 	GetPosition();
+			Debug::DrawCircle(pos , m_Radius, Color::Yellow);
+		}
 		if (m_Target.IsSet)
 			Debug::DrawLine(GetPosition(), m_Target.TargetPosition, Color::Red);
 	}
