@@ -4,21 +4,21 @@
 
 void SampleScene::OnInitialize()
 {
-	Entity1 = NewEntity<SampleEntity>({ 50, 50 }, 50, ApplicationInfo::GetTemplateLink());
-	Entity2 = NewEntity<SampleEntity>({ 200, 200 }, 50 , ApplicationInfo::GetTemplateLink());
+	Entity1 = NewEntity<SampleEntity>({ 50, 50 }, 25, ApplicationInfo::GetTemplateLink());
+	Entity2 = NewEntity<SampleEntity>({ 200, 300 }, 25, ApplicationInfo::GetTemplateLink());
 
-	Entity1->GoToPosition({ 200, 200 }, 100);
-	ApplicationInfo::IsDebugDraw = true;
-	
+	Entity1->SetRigBody(true);
+	Entity2->SetRigBody(true);
+
+	Entity1->GoToPosition(Entity2->GetPosition(), 100);
+	ApplicationInfo::IsDebugDraw = true;	
 }
 
 void SampleScene::OnUpdate()
 {
-
 	if (Entity1->EndScene)
 	{
 		m_SceneCompleted = true;
 	}
-
 }
 

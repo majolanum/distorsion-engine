@@ -32,7 +32,7 @@ private:
 	bool CanCollide = false;
 
 	EntityType m_EntityType = EntityType::Rectangle;
-	Vector2f Velocity = {};
+	Vector2f m_Velocity = {};
 
 	void Move(float deltaTime);
 	void Update(float deltaTime);
@@ -68,8 +68,9 @@ public:
 	void SetPosition(Vector2f position, float anchorX = 0.5f, float anchorY = 0.5f);
 	Vector2f GetPosition(float anchorX = 0.5f, float anchorY = 0.5f);
 	
-	void GoToPosition(Vector2f position, float speed = -1);
-	void GoToDirection(Vector2f position, float speed = -1);
+	void GoToPosition(Vector2f position, float speed = 0);
+	void GoToDirection(Vector2f position, float speed = 0);
+	void AddVelocity(Vector2f velocity) { m_Velocity = velocity; }
 
 	void Destroy();
 

@@ -14,6 +14,13 @@ Vector2f& Vector2f::Normalize()
 	return *this;
 }
 
+Vector2f& Vector2f::GetNormalize()
+{
+	Vector2f temp = *this;
+	temp.Normalize();
+	return temp;
+}
+
 float Vector2f::Dot(const Vector2f& a, const Vector2f& b)
 {
 	return a.x * b.x + a.y * b.y;

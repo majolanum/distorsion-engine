@@ -27,7 +27,6 @@ void SelecteGameScene::SetAllGame(std::map<std::string, std::string> gameList)
 	float windowHeight = ApplicationInfo::GetWindowHeight();
 	float iconSize = 100.f;
 
-
 	switch (gameList.size())
 	{
 	case 1:

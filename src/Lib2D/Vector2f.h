@@ -16,6 +16,7 @@ public:
 	}
 
 	Vector2f& Normalize();
+	Vector2f& GetNormalize();
 	float Magnitude() const;
 
 	static float Dot(const Vector2f& a, const Vector2f& b);

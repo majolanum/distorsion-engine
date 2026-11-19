@@ -59,17 +59,8 @@ void Application::RunApplication()
 		ChooseGame();
 
 	m_MainWindow->Present();
-		
-	ApplicationInfo::SetDeltaTime(m_FPSTimer->EndTimer());
 
-	/*TotalElapsed += ;
-	if (TotalElapsed >= 60/1000000.f)
-	{
-		std::cout << "fps : " << FramCount << std::endl;
-		TotalElapsed = 0;
-		FramCount = 0;
-	}
-	FramCount++;*/
+	ApplicationInfo::SetDeltaTime(m_FPSTimer->EndTimer());
 }
 
 void Application::DrawApplication()
@@ -97,7 +88,7 @@ void Application::GetEvent()
 	{
 		m_ImputeManager->Update(event);
 	}
-	if (m_ImputeManager->IsKeyDown(Key_echap))
+	if (m_ImputeManager->IsKeyDown(Key_echap) && dynamic_cast<SelectGame*>(m_ActualGame))
 	{
 		run = false;
 		return;
@@ -107,13 +98,10 @@ void Application::GetEvent()
 void Application::ChooseGame()
 {
 	if (m_ActualGame == nullptr)
-	{
 		ChangeGame(m_SelecteGame);
-		if (!dynamic_cast<SelectGame*>(m_ActualGame)->SetAllGame(m_AllGame))
-		{
-			run = false;
-		}
-	}
+
+	if (dynamic_cast<SelectGame*>(m_ActualGame)->SetAllGame(m_AllGame) == false)
+		run = false;
 }
 
 void Application::ChangeGame(std::string gameName)

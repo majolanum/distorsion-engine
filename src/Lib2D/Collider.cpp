@@ -2,16 +2,15 @@
 #include "Collider.h"
 #include "Distortion_engine/Entity.h"
 
+void Collider::UpdateCollider(Vector2f ownerPosition)
+{
+	m_ColliderPosition.x = ownerPosition.x;
+	m_ColliderPosition.y = ownerPosition.y;
+}
+
 void Collider::UpdateCollider(Vector2f ownerPosition, float width, float height)
 {
-	if (m_ColliderType == ColliderType::Rectangle)
-		m_ColliderPosition = { ownerPosition.x - width/2,ownerPosition.y - height / 2,width,height };
-
-	if (m_ColliderType == ColliderType::Circle)
-	{
-		m_ColliderPosition.x = ownerPosition.x;
-		m_ColliderPosition.y = ownerPosition.y;
-	}
+	m_ColliderPosition = { ownerPosition.x,ownerPosition.y,width,height };
 }
 
 bool Collider::IsCollide(Collider* other) const

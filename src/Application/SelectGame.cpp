@@ -33,7 +33,7 @@ bool SelectGame::SetAllGame(std::vector<Game*> allGame)
 			gameList.emplace( g->m_GameIconLink, g->m_Name);
 		}
 	}
-	if (!gameList.empty())
+	if (gameList.empty() == false)
 	{
 		m_SelectGameScene->SetAllGame(gameList);
 		return true;

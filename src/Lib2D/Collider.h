@@ -26,6 +26,7 @@ protected:
 	float m_Radius = 0.f;
 
 	Collider() = default;
+	void UpdateCollider(Vector2f ownerPosition);
 	void UpdateCollider(Vector2f ownerPosition, float width, float height);
 
 	friend class Scene;
