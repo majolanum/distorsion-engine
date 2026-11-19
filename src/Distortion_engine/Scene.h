@@ -12,6 +12,7 @@ class Scene : public Drawable
 private:
 	std::vector<Entity*> m_AllEntity;
 	std::vector<Entity*> m_EntityToDestroy;
+	std::vector<Entity*> m_EntityToAdd;
 
 	std::string m_SceneName;
 

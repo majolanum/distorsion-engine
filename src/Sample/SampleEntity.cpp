@@ -5,14 +5,18 @@
 void SampleEntity::OnInitialize()
 {
 	SetRigBody(true);
-	GetMyScene()->NewEntity<SampleEntity>({ 500,500 }, 50.f, ApplicationInfo::GetTemplateLink());
+}
+
+void SampleEntity::OnUpdate()
+{
+	
 }
 
 void SampleEntity::OnCollide(Entity* collideWith)
 {
 	if (dynamic_cast<SampleEntity*>(collideWith))
 	{
-		
+		isCollide = true;
 	}
 	
 }

@@ -147,6 +147,7 @@ void Entity::Update(float deltaTime)
 		UpdateCollider(GetPosition(), m_Width, m_Height);
 	else
 		UpdateCollider(GetPosition(0, 0), m_Width, m_Height);
+	OnUpdate();
 }
 
 void Entity::Draw(Window* w)

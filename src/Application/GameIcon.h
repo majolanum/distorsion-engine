@@ -3,7 +3,7 @@
 class GameIcon : public Entity
 {
 protected:
-	using Entity::Entity;
+	
 	std::string m_GameName;
 public:
 	void SetGameName(std::string GameName) { m_GameName = GameName; }

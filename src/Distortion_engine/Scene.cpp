@@ -11,14 +11,14 @@ Scene::Scene(std::string sceneName) : m_SceneName(sceneName)
 void Scene::Update(float DeltaTime)
 {
 	//Update
-	for (Entity* e : m_AllEntity)
+	for (Entity* entity : m_AllEntity)
 	{
-		e->Update(DeltaTime);
+		entity->Update(DeltaTime);
 
-		if (e->toDestroy)
+		if (entity->toDestroy)
 		{
-			RemoveEntity(e, m_AllEntity);
-			m_EntityToDestroy.push_back(e);
+			RemoveEntity(entity, m_AllEntity);
+			m_EntityToDestroy.push_back(entity);
 		}
 	}
 
@@ -26,12 +26,21 @@ void Scene::Update(float DeltaTime)
 	DoCollide();
 
 	//Destroy
-	for (Entity* e : m_EntityToDestroy)
+	for (Entity* entity : m_EntityToDestroy)
 	{
-		e->OnDestroy();
-		delete e;
+		entity->OnDestroy();
+		delete entity;
 	}
 	m_EntityToDestroy.clear();
+
+	for (Entity* entity : m_EntityToAdd)
+	{
+		if (entity->zAxis == -1)
+			m_AllEntity.push_back(entity);
+		else
+			m_AllEntity.emplace(m_AllEntity.begin() + entity->zAxis, entity);
+	}
+	m_EntityToAdd.clear();
 }
 
 void Scene::DoCollide()

@@ -6,43 +6,40 @@
 template<typename T>
 inline T* Scene::NewEntity(Vector2f position, Vector2f size, std::string texturPath, int zAxis)
 {
-	T* NewEntity = new T();
-	static_cast<Entity*>(NewEntity)->SetPosition(position);
-	static_cast<Entity*>(NewEntity)->SetSize(size);
-	static_cast<Entity*>(NewEntity)->m_EntityType = EntityType::Rectangle;
-	static_cast<Entity*>(NewEntity)->SetCollider(true, ColliderType::Rectangle);
-	static_cast<Entity*>(NewEntity)->ChangeTexturePath(texturPath);
+	T* newEntity = new T();
+	Entity* entity = static_cast<Entity*>(newEntity);
 
-	static_cast<Entity*>(NewEntity)->OnInitialize();
+	entity->SetPosition(position);
+	entity->SetSize(size);
+	entity->zAxis = zAxis;
+	entity->m_EntityType = EntityType::Rectangle;
+	entity->SetCollider(true, ColliderType::Rectangle);
+	entity->ChangeTexturePath(texturPath);
 
-	if (zAxis == -1)
-		m_AllEntity.push_back(NewEntity);
-	else
-		m_AllEntity.emplace(m_AllEntity.begin() + zAxis, NewEntity);
+	entity->OnInitialize();
 
-	return NewEntity;
+	m_EntityToAdd.push_back(newEntity);
+	return newEntity;
 }
 
 template<typename T>
 inline T* Scene::NewEntity(Vector2f position, float radius, std::string texturPath, int zAxis)
 {
-	T* NewEntity = new T();
-	static_cast<Entity*>(NewEntity)->SetPosition(position);	
-	static_cast<Entity*>(NewEntity)->m_EntityType = EntityType::Circle;
-	static_cast<Entity*>(NewEntity)->SetCollider(true, ColliderType::Circle, radius);
-	static_cast<Entity*>(NewEntity)->SetSize({radius*2,radius*2});
-	static_cast<Entity*>(NewEntity)->ChangeTexturePath(texturPath);
+	T* newEntity = new T();
+	Entity * entity = static_cast<Entity*>(newEntity);
 
-	static_cast<Entity*>(NewEntity)->OnInitialize();
+	entity->SetPosition(position);
+	entity->m_EntityType = EntityType::Circle;
+	entity->zAxis = zAxis;
+	entity->SetCollider(true, ColliderType::Circle, radius);
+	entity->SetSize({ radius * 2,radius * 2 });
+	entity->ChangeTexturePath(texturPath);
 
-	if (zAxis == -1)
-		m_AllEntity.push_back(NewEntity);
-	else
-		m_AllEntity.emplace(m_AllEntity.begin() + zAxis, NewEntity);
+	entity->OnInitialize();
 
-	return NewEntity;
+	m_EntityToAdd.push_back(newEntity);
+	return newEntity;
 }
-
 
 template<typename T>
 inline T* Scene::GetEntity()

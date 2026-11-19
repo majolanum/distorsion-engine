@@ -28,6 +28,7 @@ class Entity : public Sprite, public Collider
 private:
 	int m_Speed = 0;
 	int m_Index = 0;
+	int zAxis = -1;
 	bool toDestroy = false;
 	bool CanCollide = false;
 
