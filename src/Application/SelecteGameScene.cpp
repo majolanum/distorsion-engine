@@ -19,6 +19,11 @@ void SelecteGameScene::OnUpdate()
 			m_SelectedGame = GI->GetGameName();
 		}
 	}
+
+	if (InputManager::Get()->IsKeyDown(Key_d))
+	{
+		ApplicationInfo::IsDebugDraw = !ApplicationInfo::IsDebugDraw;
+	}
 }
 
 void SelecteGameScene::SetAllGame(std::map<std::string, std::string> gameList)

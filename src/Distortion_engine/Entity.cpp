@@ -1,6 +1,7 @@
 #include <iostream>
 #include <assert.h>
 #include "Entity.h"
+#include "Game.h"
 #include "Lib2D/Debug.h"
 #include "Application/ApplicationInfo.h"
 
@@ -173,3 +174,8 @@ void Entity::Destroy()
 	toDestroy = true;
 	OnDestroy();
 }
+
+Scene* Entity::GetMyScene()
+{ { return ApplicationInfo::ActualGame->GetActualScene(); }
+}
+

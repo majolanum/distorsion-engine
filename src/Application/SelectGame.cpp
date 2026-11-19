@@ -7,7 +7,7 @@ void SelectGame::OnInitialize()
 	m_SceneManager->AddScene<SelecteGameScene>("Select_game");
 	m_SceneManager->ChangeSceneTo("Select_game");
 
-	m_SelectGameScene = m_SceneManager->GetActualScene<SelecteGameScene>();
+	m_SelectGameScene = m_SceneManager->GetScene<SelecteGameScene>();
 	m_AllGame.clear();
 }
 

@@ -1,6 +1,7 @@
 #include "SampleScene.h"
 #include "Application/ApplicationInfo.h"
 #include "Lib2d/Debug.h"
+#include "Distortion_engine/InputManager.h"
 
 void SampleScene::OnInitialize()
 {
@@ -11,14 +12,16 @@ void SampleScene::OnInitialize()
 	Entity2->SetRigBody(true);
 
 	Entity1->GoToPosition(Entity2->GetPosition(), 100);
-	ApplicationInfo::IsDebugDraw = true;	
 }
 
 void SampleScene::OnUpdate()
 {
-	if (Entity1->EndScene)
-	{
+	if (InputManager::Get()->IsKeyRelease(Key_echap))
 		m_SceneCompleted = true;
+
+	if (InputManager::Get()->IsKeyDown(Key_d))
+	{
+		ApplicationInfo::IsDebugDraw = !ApplicationInfo::IsDebugDraw;
 	}
 }
 

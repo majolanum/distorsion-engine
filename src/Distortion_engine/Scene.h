@@ -4,7 +4,8 @@
 #include <iostream>
 
 #include "Lib2D/Drawable.h"
-#include "Entity.h"
+
+class Entity;
 
 class Scene : public Drawable
 {
@@ -25,7 +26,7 @@ protected:
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
 	virtual void OnEnd() {}
-
+public:
 	/// <summary>
 	/// Creat a new Engine entity 
 	/// </summary>

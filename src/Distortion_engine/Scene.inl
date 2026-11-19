@@ -1,4 +1,7 @@
-#include"Scene.h"
+#pragma once
+
+#include "Scene.h"
+#include "Entity.h"
 
 template<typename T>
 inline T* Scene::NewEntity(Vector2f position, Vector2f size, std::string texturPath, int zAxis)

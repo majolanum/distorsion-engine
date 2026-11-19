@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "Scene.h"
 
 void SceneManager::UpdateActualScene(float DeltaTime)
 {

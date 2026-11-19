@@ -3,6 +3,8 @@
 #include <string>
 #include <SDL3/SDl_Timer.h>
 
+class Game;
+
 class ApplicationInfo
 {
 private:
@@ -13,7 +15,7 @@ private:
 
 public:
 	static inline bool IsDebugDraw = false;
-
+	static inline Game* ActualGame = nullptr;
 	static float GetDeltaTime() { return m_DeltaTime; }
 	static float GetWindowWidth() { return m_WindowWidth; }
 	static float GetWindowHeight() { return m_WindowHeight; }

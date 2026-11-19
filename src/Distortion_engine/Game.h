@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 #include "SceneManager.h"
 
@@ -24,10 +25,13 @@ protected:
 
 	virtual void OnInitialize() {}
 	virtual void OnUpdate() {}
-
+	
 	~Game();
 
 public:
+	Scene* GetActualScene()const { return m_SceneManager->GetActualScene(); }
+
 	friend class Application;
 	friend class SelectGame;
 };
+

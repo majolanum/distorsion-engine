@@ -7,20 +7,22 @@ class SceneManager
 {
 private:
 	std::vector<Scene*> m_AllScene;
-	Scene* m_ActualScene;
+	Scene* m_ActualScene = nullptr;
 
 	void UpdateActualScene(float DeltaTime);
 	void DrawActualScene(Window*);
 
 public:
 	bool ChangeSceneTo(std::string sceneName);
-	bool SceneFinished() { return m_ActualScene->m_SceneCompleted; }
+	bool SceneFinished() const { return m_ActualScene->m_SceneCompleted; }
+
+	Scene* GetActualScene() const { return m_ActualScene; }
 
 	template<typename T>
 	void AddScene(std::string sceneName);
 
 	template<typename T>
-	T* GetActualScene();
+	T* GetScene() const;
 
 	~SceneManager();
 
@@ -28,15 +30,15 @@ public:
 };
 
 template<typename T>
-inline void SceneManager::AddScene(std::string sceneName)
+inline void SceneManager::AddScene(std::string sceneName) 
 {
 	T* newScene = new T(sceneName);
 	m_AllScene.push_back(newScene);
 }
 
 template<typename T>
-inline T* SceneManager::GetActualScene()
-{	
+inline T* SceneManager::GetScene() const
+{
 	for (Scene* s : m_AllScene)
 	{
 		if (T* search = dynamic_cast<T*>(s))

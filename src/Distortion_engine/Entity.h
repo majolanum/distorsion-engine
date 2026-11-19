@@ -73,7 +73,10 @@ public:
 	void AddVelocity(Vector2f velocity) { m_Velocity = velocity; }
 
 	void Destroy();
+	Scene* GetMyScene();
 
 	friend class Collider;
 	friend class Scene;
 };
+
+#include "Entity.inl"

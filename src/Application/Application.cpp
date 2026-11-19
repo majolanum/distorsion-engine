@@ -3,6 +3,9 @@
 #include "SelectGame.h"
 #include "Lib2d/Debug.h"
 
+#include "Distortion_engine/InputManager.h"
+#include "Distortion_engine/Timer.h"
+
 Application* Application::instance = nullptr;
 
 Application* Application::Get()
@@ -115,6 +118,7 @@ void Application::ChangeGame(std::string gameName)
 
 			m_ActualGame = g;
 			m_ActualGame->Initialize();
+			ApplicationInfo::ActualGame = m_ActualGame;
 			return;
 		}
 	}

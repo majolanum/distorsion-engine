@@ -3,12 +3,13 @@
 #include <vector>
 
 #include "Lib2D/Window.h"
-#include "Distortion_engine/InputManager.h"
-#include "Distortion_engine/Timer.h"
 #include "Distortion_engine/Game.h"
 
 constexpr int TARGET_FPS = 60;
 constexpr float TARGET_ELAPSED = 1000 / TARGET_FPS;
+
+class InputManager;
+class Timer;
 
 class Application
 {
@@ -40,6 +41,8 @@ private:
 
 public:
 	static Application* Get();
+
+	Game* GetActualGame() const { return m_ActualGame; }
 
 	void LauchApp();
 

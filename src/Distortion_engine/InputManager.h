@@ -9,7 +9,7 @@ const enum Key
 	Key_a = SDLK_A,
 	Key_b = SDLK_B,
 	Key_c = SDLK_C,
-	Key_D = SDLK_D,
+	Key_d = SDLK_D,
 	Key_e = SDLK_E,
 	Key_f = SDLK_F,
 	Key_g = SDLK_G,

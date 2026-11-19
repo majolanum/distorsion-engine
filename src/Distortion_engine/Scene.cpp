@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "InputManager.h"
+#include "Entity.h"
 
 Scene::Scene(std::string sceneName) : m_SceneName(sceneName)
 {

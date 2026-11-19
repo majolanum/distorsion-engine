@@ -1,4 +1,5 @@
 #include "Game.h"
+
 void Game::Initialize()
 {
 	if (m_IsInitialized) 
